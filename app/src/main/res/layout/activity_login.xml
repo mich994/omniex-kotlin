@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/icons"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_huge"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/login_email_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_login_edit_text"
+            android:hint="@string/login_email"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/margin_medium"
+            android:textSize="@dimen/text_size_eighteen" />
+
+        <EditText
+            android:id="@+id/login_password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:inputType="textPassword"
+            android:background="@drawable/background_login_edit_text"
+            android:hint="@string/login_password"
+            android:padding="@dimen/margin_medium"
+            android:textSize="@dimen/text_size_eighteen" />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/login_login_btn"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_button_login"
+                android:text="@string/login" />
+
+            <Button
+                android:id="@+id/login_exit_btn"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_button_login"
+                android:text="@string/exit" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_margin="@dimen/margin_large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ox"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

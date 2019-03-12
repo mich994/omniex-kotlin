@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/order_address_cd"
+    android:background="@drawable/background_login_edit_text"
+    android:layout_width="match_parent"
+    app:cardBackgroundColor="@color/icons"
+    app:cardCornerRadius="@dimen/margin_medium"
+    android:layout_margin="@dimen/margin_medium"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/order_address_name"
+        android:text="Name Name"
+        android:textColor="@color/primary_text"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/order_address_company"
+        android:textColor="@color/primary_text"
+        android:fontFamily="@font/roboto_black"
+        android:text="Omniex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/order_address_street"
+        android:textColor="@color/primary_text"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Street 1834/34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/order_address_postcode_city"
+        android:textColor="@color/primary_text"
+        android:fontFamily="@font/roboto_regular"
+        android:text="2133KS, Hoofddorp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

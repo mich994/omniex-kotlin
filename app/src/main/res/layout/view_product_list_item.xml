@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/product_list_item_fl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/product_list_item_image"
+        android:layout_width="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/omniex_logo_transparent"
+        android:layout_height="250dp" />
+
+    <LinearLayout
+        android:background="@color/black_transparent_99"
+        android:paddingTop="@dimen/margin_small"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/product_list_item_name"
+            android:textColor="@color/icons"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="NAME"/>
+        <TextView
+            android:id="@+id/product_list_item_price"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/icons"
+            android:padding="@dimen/margin_small"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1000.00$"/>
+
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

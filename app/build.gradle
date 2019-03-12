@@ -1,0 +1,112 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-allopen'
+
+apply plugin: 'kotlin-kapt'
+
+allOpen {
+    annotation("org.androidannotations.api.KotlinOpen")
+}
+
+def AAVersion = '4.3.1'
+def RxBinding = '2.1.1'
+def Dagger = '2.14.1'
+def Retrofit = '2.4.0'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "omniex.nl.omniex"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-compat:27.1.1'
+    implementation 'com.android.support:exifinterface:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //DAGGER
+    kapt "com.google.dagger:dagger-android-processor:$Dagger"
+    kapt "com.google.dagger:dagger-compiler:$Dagger"
+    implementation "com.google.dagger:dagger:$Dagger"
+    implementation "com.google.dagger:dagger-android:$Dagger"
+    implementation "com.google.dagger:dagger-android-support:$Dagger"
+
+    //MVP
+    implementation 'com.hannesdorfmann.mosby3:mvp:3.1.0'
+
+    //Duo Navigation Drawer
+    implementation 'nl.psdcompany:duo-navigation-drawer:2.0.8'
+
+    //Annotation
+    kapt "org.androidannotations:androidannotations:$AAVersion"
+    implementation "org.androidannotations:androidannotations-api:$AAVersion"
+
+    //RX JAVA
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+    //RX BINDING
+    implementation "com.jakewharton.rxbinding2:rxbinding:$RxBinding"
+    implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:$RxBinding"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$RxBinding"
+
+    //RX Firebase
+    implementation 'com.github.FrangSierra:RxFirebase:1.5.0'
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$Retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$Retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$Retrofit"
+
+    //OkHTTP
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    //multidex
+    implementation 'com.android.support:multidex:1.0.3'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    kapt 'com.github.bumptech.glide:compiler:4.7.1'
+
+    //RoundedImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //CircleImageView
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //Flexbox
+    implementation 'com.google.android:flexbox:1.0.0'
+
+    implementation 'me.relex:circleindicator:1.2.2@aar'
+}

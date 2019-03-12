@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_medium">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/background_cart_dialog_round"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_big">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/roboto_bold"
+            android:text="CART:"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_twenty" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cart_dialog_items_rv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Total:"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_eighteen" />
+
+            <TextView
+                android:id="@+id/cart_dialog_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="@font/roboto_light"
+                android:text="324324.54$"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_eighteen" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/cart_dialog_make_order_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_button_login"
+                android:text="MAKE ORDER" />
+
+            <Button
+                android:id="@+id/cart_dialog_continue_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:background="@drawable/background_button_login"
+                android:text="Continue Shopping" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

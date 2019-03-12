@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/margin_small"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/category_item_image"
+        android:src="@drawable/omniex_logo_transparent"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+    <TextView
+        android:id="@+id/category_item_name"
+        android:background="@color/black_transparent_99"
+        android:layout_width="match_parent"
+        android:textColor="@color/icons"
+        android:textSize="@dimen/text_size_twenty"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:fontFamily="@font/roboto_bold"
+        android:text="CATEGORY"/>
+
+
+</FrameLayout>

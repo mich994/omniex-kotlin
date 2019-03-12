@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    app:contentScaleClosed="1"
+    app:contentScaleOpen="0.9"
+    app:menuAlphaClosed="0"
+    app:menuAlphaOpen="1"
+    app:menuScaleClosed="1"
+    app:menuScaleOpen="1">
+
+    <nl.psdcompany.duonavigationdrawer.views.DuoMenuView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.8"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:tag="menu"
+        app:header="@layout/view_menu_header" />
+
+    <FrameLayout
+        android:id="@+id/parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="content">
+
+        <include layout="@layout/toolbar" />
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/toolbar_height" />
+
+        <FrameLayout
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/toolbar_height"
+            android:background="@color/black_transparent_99"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/background_progress_bar"
+                android:padding="@dimen/margin_medium"/>
+        </FrameLayout>
+
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/menu_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="1"
+        android:visibility="gone"/>
+</nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/icons"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:orientation="vertical">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/product_details_images_vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" />
+
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/product_details_images_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_large"
+                    android:layout_marginTop="@dimen/margin_small"
+                    app:ci_drawable="@drawable/circle_indicator_selected"
+                    app:ci_drawable_unselected="@drawable/circle_indicator_unselected"
+                    app:ci_height="@dimen/margin_medium_small"
+                    app:ci_width="@dimen/margin_medium_small" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/product_details_price_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_twenty" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:text="(excl. TAX)"
+                    android:textSize="@dimen/text_size_ten" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margin_medium"
+                    app:cardCornerRadius="@dimen/margin_small">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Quantity" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/margin_small">
+
+                        <ImageView
+                            android:id="@+id/product_details_quantity_remove"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_medium"
+                            android:src="@drawable/baseline_remove_24" />
+
+                        <TextView
+                            android:id="@+id/product_details_quantity_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="center_vertical"
+                            android:text="1" />
+
+                        <ImageView
+                            android:id="@+id/product_details_quantity_add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_medium"
+                            android:src="@drawable/baseline_add_24" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <ImageButton
+                    android:id="@+id/product_details_add_to_cart_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:background="@drawable/background_add_to_cart_btn"
+                    android:padding="@dimen/margin_small"
+                    android:src="@drawable/baseline_add_shopping_cart_24" />
+
+
+                <TextView
+                    android:id="@+id/product_details_description_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_big"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center"
+                    android:autoLink="web"
+                    android:linksClickable="true"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

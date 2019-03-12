@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_above="@+id/order_payment_next_btn"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/order_payment_rv"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/order_payment_empty_tv"
+                android:textSize="@dimen/text_size_twenty"
+                android:fontFamily="@font/roboto_black"
+                android:gravity="center"
+                android:layout_margin="@dimen/margin_large"
+                android:padding="@dimen/margin_large"
+                android:text="You dont have any payment address. Click on this text to add one."
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <Button
+            android:alpha=".5"
+            android:id="@+id/order_payment_next_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/margin_medium"
+            android:background="@drawable/background_button_login"
+            android:text="next" />
+
+    </RelativeLayout>
+
+</LinearLayout>

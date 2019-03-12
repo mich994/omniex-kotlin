@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <size android:height="@dimen/circle_indicator_selected"
+        android:width="@dimen/circle_indicator_selected"/>
+    <solid android:color="@color/colorPrimaryLight" />
+</shape>
