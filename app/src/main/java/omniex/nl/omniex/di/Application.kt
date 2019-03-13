@@ -7,11 +7,20 @@ import dagger.android.support.DaggerApplication
 
 class Application : DaggerApplication() {
 
-    var mInstance: Application? = null
+    val mInstance: Application
+
+    init {
+        mInstance = this
+    }
+
+    companion object {
+        lateinit var instance: Application
+            private set
+    }
 
     override fun onCreate() {
         super.onCreate()
-        mInstance = this
+
     }
 
     override fun attachBaseContext(base: Context) {
@@ -19,9 +28,10 @@ class Application : DaggerApplication() {
         MultiDex.install(this)
     }
 
-    fun getInstance(): Application? {
-        return mInstance
-    }
+    val Context.application: Application
+        get() = applicationContext as Application
+
+
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerApplicationComponent.builder()
