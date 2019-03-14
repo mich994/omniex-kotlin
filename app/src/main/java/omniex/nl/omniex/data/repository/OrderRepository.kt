@@ -14,33 +14,33 @@ internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefU
 
     val orderOverview: Single<Response<Void>>
         get() = mOmniexApi
-                .getOrderOverview(mSharedPrefUtils.`accessToken()`)
+                .getOrderOverview(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     val orderStatuses: Single<Response<OrderStatusesResponse>>
         get() = mOmniexApi
-                .getOrderStatuses(mSharedPrefUtils.`accessToken()`, 20, 1)
+                .getOrderStatuses(mSharedPrefUtils.accessToken(), 20, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun simpleConfirm(): Single<Response<Void>> {
         return mOmniexApi
-                .simpleConfirmOverview(mSharedPrefUtils.`accessToken()`)
+                .simpleConfirmOverview(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun confirmOrder(): Single<Response<Void>> {
         return mOmniexApi
-                .confirmOrder(mSharedPrefUtils.`accessToken()`)
+                .confirmOrder(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun getOrderDetails(id: Int?): Single<Response<Void>> {
         return mOmniexApi
-                .getOrderDetails(mSharedPrefUtils.`accessToken()`, id)
+                .getOrderDetails(mSharedPrefUtils.accessToken(), id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

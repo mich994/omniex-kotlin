@@ -16,36 +16,36 @@ class ProductsRepository @Inject
 internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefUtils: SharedPrefUtils) {
 
     fun categories(): Single<Response<CategoriesResponse>> = mOmniexApi
-                .getCategories(mSharedPrefUtils.`accessToken()`)
+                .getCategories(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun products(): Single<Response<Void>> = mOmniexApi
-                .getProducts(mSharedPrefUtils.`accessToken()`)
+                .getProducts(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
 
     fun listOfFeatured(): Single<Response<FeaturedProductsResponse>> = mOmniexApi
-                .getListOfFeatured(mSharedPrefUtils.`accessToken()`)
+                .getListOfFeatured(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun bestsellers(): Single<Response<ProductsListResponse>> = mOmniexApi
-                .getBestsellers(mSharedPrefUtils.`accessToken()`, 10)
+                .getBestsellers(mSharedPrefUtils.accessToken(), 10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun getProductsByCat(catId: Int?): Single<Response<ProductsListResponse>> {
         return mOmniexApi
-                .getProductsByCat(mSharedPrefUtils.`accessToken()`, catId)
+                .getProductsByCat(mSharedPrefUtils.accessToken(), catId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun getProductDetails(id: Int?): Single<Response<ProductResponse>> {
         return mOmniexApi
-                .getProductDetails(mSharedPrefUtils.`accessToken()`, id)
+                .getProductDetails(mSharedPrefUtils.accessToken(), id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

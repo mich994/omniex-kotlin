@@ -17,21 +17,21 @@ internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefU
 
     fun login(login: Login): Single<Response<LoginResponse>> {
         return mOmniexApi
-                .login(mSharedPrefUtils.`accessToken()`, login)
+                .login(mSharedPrefUtils.accessToken(), login)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun logout(): Single<Response<Void>> {
         return mOmniexApi
-                .logout(mSharedPrefUtils.`accessToken()`)
+                .logout(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun register(registerSetter: RegisterSetter): Single<Response<RegisterResponse>> {
         return mOmniexApi
-                .register(mSharedPrefUtils.`accessToken()`, registerSetter)
+                .register(mSharedPrefUtils.accessToken(), registerSetter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

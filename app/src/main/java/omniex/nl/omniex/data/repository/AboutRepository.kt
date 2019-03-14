@@ -13,13 +13,13 @@ internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefU
 
     fun information(): Single<Response<Void>>
             = mOmniexApi
-            .getInformation(mSharedPrefUtils.`accessToken()`)
+            .getInformation(mSharedPrefUtils.accessToken())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
     fun getInformationById(id: Int?): Single<Response<Void>> {
         return mOmniexApi
-                .getInformationById(mSharedPrefUtils.`accessToken()`, id)
+                .getInformationById(mSharedPrefUtils.accessToken(), id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

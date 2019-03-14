@@ -13,14 +13,14 @@ internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefU
 
     fun subscribeNewsletter(): Single<Response<Void>> {
         return mOmniexApi
-                .subscribeNewsletter(mSharedPrefUtils.`accessToken()`, 1)
+                .subscribeNewsletter(mSharedPrefUtils.accessToken(), 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun unsubscribeNewsletter(): Single<Response<Void>> {
         return mOmniexApi
-                .subscribeNewsletter(mSharedPrefUtils.`accessToken()`, 0)
+                .subscribeNewsletter(mSharedPrefUtils.accessToken(), 0)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

@@ -15,13 +15,13 @@ internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefU
 
     val countries: Single<Response<CountryResponse>>
         get() = mOmniexApi
-                .getCountries(mSharedPrefUtils.`accessToken()`)
+                .getCountries(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun getZones(countryId: Int?): Single<Response<ZoneResponse>> {
         return mOmniexApi
-                .getZones(mSharedPrefUtils.`accessToken()`, countryId)
+                .getZones(mSharedPrefUtils.accessToken(), countryId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

@@ -13,13 +13,13 @@ class PaymentRespository @Inject
 internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefUtils: SharedPrefUtils) {
 
     fun paymentMethods(): Single<Response<Void>> = mOmniexApi
-                .getPaymentMethods(mSharedPrefUtils.`accessToken()`)
+                .getPaymentMethods(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun setPaymentMethod(paymentMethodSetter: PaymentMethodSetter): Single<Response<Void>> {
         return mOmniexApi
-                .setPaymentMethod(mSharedPrefUtils.`accessToken()`, paymentMethodSetter)
+                .setPaymentMethod(mSharedPrefUtils.accessToken(), paymentMethodSetter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

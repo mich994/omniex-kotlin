@@ -15,13 +15,13 @@ internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefU
 
     val shippingMethods: Single<Response<ShippingMethodResponse>>
         get() = mOmniexApi
-                .getShippingMethods(mSharedPrefUtils.`accessToken()`)
+                .getShippingMethods(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun setShippingMethod(shippingMethodSetter: ShippingMethodSetter): Single<Response<Void>> {
         return mOmniexApi
-                .setShippingMethod(mSharedPrefUtils.`accessToken()`, shippingMethodSetter)
+                .setShippingMethod(mSharedPrefUtils.accessToken(), shippingMethodSetter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

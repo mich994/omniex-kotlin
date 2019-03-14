@@ -17,72 +17,72 @@ class AddressRepository @Inject
 internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefUtils: SharedPrefUtils) {
 
     fun addressList(): Single<Response<AddressListResponse>> = mOmniexApi
-                .getAddressList(mSharedPrefUtils.`accessToken()`)
+                .getAddressList(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun shippingAddresses(): Single<Response<OrderAddressesResponse>> = mOmniexApi
-                .getShippingAddresses(mSharedPrefUtils.`accessToken()`)
+                .getShippingAddresses(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun paymentAddresses(): Single<Response<OrderAddressesResponse>> = mOmniexApi
-                .getPaymentAdresses(mSharedPrefUtils.`accessToken()`)
+                .getPaymentAdresses(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun addNewAddress(addAddress: AddAddress): Single<Response<Void>> {
         return mOmniexApi
-                .addNewAddress(mSharedPrefUtils.`accessToken()`, addAddress)
+                .addNewAddress(mSharedPrefUtils.accessToken(), addAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun editAddress(addressId: Int?, addAddress: AddAddress): Single<Response<Void>> {
         return mOmniexApi
-                .editAddress(mSharedPrefUtils.`accessToken()`, addressId, addAddress)
+                .editAddress(mSharedPrefUtils.accessToken(), addressId, addAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun removeAddress(addressId: Int?): Single<Response<Void>> {
         return mOmniexApi
-                .removeAddress(mSharedPrefUtils.`accessToken()`, addressId)
+                .removeAddress(mSharedPrefUtils.accessToken(), addressId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun getAddressDetails(addressId: Int?): Single<Response<Void>> {
         return mOmniexApi
-                .getAddressById(mSharedPrefUtils.`accessToken()`, addressId)
+                .getAddressById(mSharedPrefUtils.accessToken(), addressId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun addNewShippingAddress(orderAddress: OrderAddress): Single<Response<Void>> {
         return mOmniexApi
-                .addNewShippingAddress(mSharedPrefUtils.`accessToken()`, orderAddress)
+                .addNewShippingAddress(mSharedPrefUtils.accessToken(), orderAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun setExistingShippingAddress(existingAddress: Address): Single<Response<Void>> {
         return mOmniexApi
-                .setExistingShippingAddress(mSharedPrefUtils.`accessToken()`, existingAddress)
+                .setExistingShippingAddress(mSharedPrefUtils.accessToken(), existingAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun addNewPaymentAddress(orderAddress: OrderAddress): Single<Response<Void>> {
         return mOmniexApi
-                .addNewPaymentAddress(mSharedPrefUtils.`accessToken()`, orderAddress)
+                .addNewPaymentAddress(mSharedPrefUtils.accessToken(), orderAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun setExistingPaymentAddress(existingAddress: Address): Single<Response<Void>> {
         return mOmniexApi
-                .setExisitingPaymentAddress(mSharedPrefUtils.`accessToken()`, existingAddress)
+                .setExisitingPaymentAddress(mSharedPrefUtils.accessToken(), existingAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

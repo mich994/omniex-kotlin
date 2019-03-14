@@ -3,22 +3,14 @@ package omniex.nl.omniex.ui.app.auth.register
 import android.app.AlertDialog
 import android.view.View
 import android.widget.EditText
-import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
-
-import org.androidannotations.annotations.Click
-import org.androidannotations.annotations.EActivity
-import org.androidannotations.annotations.ViewById
-
-import nl.omniex.omniexshopping.R
-import nl.omniex.omniexshopping.data.model.auth.register.CustomField
-import nl.omniex.omniexshopping.data.model.auth.register.CustomFieldSetter
-import nl.omniex.omniexshopping.data.model.auth.register.RegisterSetter
-import nl.omniex.omniexshopping.ui.base.BaseActivity
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.auth.register.CustomField
 import omniex.nl.omniex.data.model.auth.register.CustomFieldSetter
 import omniex.nl.omniex.data.model.auth.register.RegisterSetter
 import omniex.nl.omniex.ui.base.BaseActivity
+import org.androidannotations.annotations.Click
+import org.androidannotations.annotations.EActivity
+import org.androidannotations.annotations.ViewById
 
 @EActivity(R.layout.activity_register)
 class RegisterActivity : BaseActivity<RegisterView, RegisterPresenter>(), RegisterView {
@@ -124,8 +116,8 @@ class RegisterActivity : BaseActivity<RegisterView, RegisterPresenter>(), Regist
     }
 
     private fun setToolbar() {
-        getCustomToolbar()
-                .setIconStart(R.drawable.twotone_arrow_back_black_36)
-                .setIconStarClickListener(???({ this.finish() }))
+//        getCustomToolbar()
+//                .setIconStart(R.drawable.twotone_arrow_back_black_36)
+//                .setIconStarClickListener(???({ this.finish() }))
     }
 }

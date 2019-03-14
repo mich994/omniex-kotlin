@@ -17,27 +17,27 @@ internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefU
 
     val cart: Single<Response<CartResponse>>
         get() = mOmniexApi
-                .getCart(mSharedPrefUtils.`accessToken()`)
+                .getCart(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
     fun addToCart(addToCartModel: AddToCartModel): Single<Response<Void>> {
         return mOmniexApi
-                .addToCart(mSharedPrefUtils.`accessToken()`, addToCartModel)
+                .addToCart(mSharedPrefUtils.accessToken(), addToCartModel)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun emptyCart(): Single<Response<Void>> {
         return mOmniexApi
-                .emptyCart(mSharedPrefUtils.`accessToken()`)
+                .emptyCart(mSharedPrefUtils.accessToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun updateCartItemQuantity(cartQuantitySetter: CartQuantitySetter): Single<Response<Void>> {
         return mOmniexApi
-                .updateCartItemQuantity(mSharedPrefUtils.`accessToken()`, cartQuantitySetter)
+                .updateCartItemQuantity(mSharedPrefUtils.accessToken(), cartQuantitySetter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
@@ -45,7 +45,7 @@ internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefU
 
     fun deleteCartItem(cartItemDelete: CartItemDelete): Single<Response<Void>> {
         return mOmniexApi
-                .deleteCartItem(mSharedPrefUtils.`accessToken()`, cartItemDelete)
+                .deleteCartItem(mSharedPrefUtils.accessToken(), cartItemDelete)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
