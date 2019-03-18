@@ -16,7 +16,7 @@ import org.androidannotations.annotations.ViewById
 import javax.inject.Inject
 
 @EFragment(R.layout.fragment_categories)
-class CategoriesFragment : BaseFragment<CategoriesView, CategoriesPresenter>(), CategoriesView, BaseRecyclerAdapter.ItemClickListener<Category> {
+open class CategoriesFragment : BaseFragment<CategoriesView, CategoriesPresenter>(), CategoriesView, BaseRecyclerAdapter.ItemClickListener<Category> {
 
     @ViewById(R.id.categories_rv)
     internal var mCategoriesRv: RecyclerView? = null
@@ -36,7 +36,7 @@ class CategoriesFragment : BaseFragment<CategoriesView, CategoriesPresenter>(), 
         mCategoriesAdapter!!.setItems(categoryList)
     }
 
-    fun onItemClick(category: Category) {
-        goToFragment(ProductsListFragment_.builder().mIsBestSellersList(false).mCategoryId(category.getCategoryId()).build(), true)
+    override fun onItemClick(category: Category?) {
+        goToFragment(ProductsListFragment_.builder().mIsBestSellersList(false).mCategoryId(category!!.categoryId).build(), true)
     }
 }

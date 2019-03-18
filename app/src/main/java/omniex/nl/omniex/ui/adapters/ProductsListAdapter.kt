@@ -16,6 +16,6 @@ class ProductsListAdapter : BaseRecyclerAdapter<Product, ProductsListItemView>()
     }
 
     override fun onBindViewHolder(holder: ViewWrapper<ProductsListItemView>, position: Int) {
-        holder.view.bind(getItem(position)).setProductItemClickListener(getItemClickListener())
+        holder.view.bind(getItem(position)).setProductItemClickListener(itemClickListener)
     }
 }

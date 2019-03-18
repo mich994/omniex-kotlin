@@ -37,7 +37,7 @@ class ProductsListItemView(context: Context) : FrameLayout(context) {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(product: Product): ProductsListItemView {
+    fun bind(product: Product?): ProductsListItemView {
         mProduct = product
         Glide.with(this)
                 .load(if (mProduct!!.imageUrl != null) StringUtils.fixUrl(mProduct!!.imageUrl) else mProduct!!.imageThumb)

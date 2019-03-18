@@ -1,26 +1,33 @@
 package omniex.nl.omniex.ui.base
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import android.view.View
+import android.widget.FrameLayout
 import android.widget.Toast
 import com.hannesdorfmann.mosby3.mvp.MvpActivity
 import dagger.Lazy
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import omniex.nl.omniex.R
+import omniex.nl.omniex.ui.views.toolbar.CustomToolbar
 import org.androidannotations.annotations.AfterInject
+import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EActivity
+import org.androidannotations.annotations.ViewById
 import javax.inject.Inject
 
 @EActivity
 abstract class BaseActivity<V : BaseView, P : BasePresenter<V>> : MvpActivity<V, P>(), BaseView {
 
-//    @ViewById(R.id.progress_bar)
-//    var mProgressBar: FrameLayout? = null
+    @ViewById(R.id.progress_bar)
+    lateinit var mProgressBar: FrameLayout
 //
-//    @Bean
-//    var customToolbar: CustomToolbar? = null
-//        protected set
+    @Bean
+    lateinit var customToolbar: CustomToolbar
+        protected set
 
     private val mCompositeDisposable = CompositeDisposable()
     private var mFragmentManager: FragmentManager? = null
@@ -57,16 +64,16 @@ abstract class BaseActivity<V : BaseView, P : BasePresenter<V>> : MvpActivity<V,
         mCompositeDisposable.add(disposable)
     }
 
-//    fun goToFragment(fragment: Fragment, addToBackStack: Boolean, tag: String) {
-//        val fragmentContainer = mFragmentManager!!.findFragmentById(R.id.fragment_container)
-//        if (fragmentContainer != null && fragmentContainer.javaClass.simpleName == fragment.javaClass.simpleName)
-//            return
-//        val transaction = mFragmentManager!!.beginTransaction()
-//        transaction.replace(R.id.fragment_container, fragment)
-//        if (addToBackStack)
-//            transaction.addToBackStack(tag)
-//        transaction.commit()
-//    }
+    fun goToFragment(fragment: Fragment, addToBackStack: Boolean, tag: String) {
+        val fragmentContainer = mFragmentManager!!.findFragmentById(R.id.fragment_container)
+        if (fragmentContainer != null && fragmentContainer.javaClass.simpleName == fragment.javaClass.simpleName)
+            return
+        val transaction = mFragmentManager!!.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        if (addToBackStack)
+            transaction.addToBackStack(tag)
+        transaction.commit()
+    }
 
     fun popBackStack() {
         mFragmentManager!!.popBackStack()
@@ -84,13 +91,13 @@ abstract class BaseActivity<V : BaseView, P : BasePresenter<V>> : MvpActivity<V,
 
     }
 
-//    fun showProgressBar() {
-//        mProgressBar!!.visibility = View.VISIBLE
-//    }
-//
-//    fun hideProgressBar() {
-//        mProgressBar!!.visibility = View.GONE
-//    }
+    fun showProgressBar() {
+        mProgressBar!!.visibility = View.VISIBLE
+    }
+
+    fun hideProgressBar() {
+        mProgressBar!!.visibility = View.GONE
+    }
 
     @Throws(IllegalArgumentException::class)
     fun showToastMessage(message: String, duration: Int) {

@@ -32,7 +32,7 @@ class OrderStatusItemView(context: Context) : LinearLayout(context) {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(orderStatus: OrderStatus): OrderStatusItemView {
+    fun bind(orderStatus: OrderStatus?): OrderStatusItemView {
         mOrderStatus = orderStatus
         mName!!.setText(mOrderStatus!!.name)
         mDate!!.setText(StringUtils.fixUrl(mOrderStatus!!.dateAdded))

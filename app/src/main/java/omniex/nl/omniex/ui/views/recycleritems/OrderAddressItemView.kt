@@ -38,7 +38,7 @@ class OrderAddressItemView(context: Context) : CardView(context) {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(address: Address, isSelected: Boolean): OrderAddressItemView {
+    fun bind(address: Address?, isSelected: Boolean): OrderAddressItemView {
         mOrderAddressCd!!.radius = 16f
         mAddress = address
         mName!!.setText(mAddress!!.firstName + " " + mAddress!!.lastName)

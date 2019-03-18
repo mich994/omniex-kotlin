@@ -28,7 +28,7 @@ class CountryListItemView(context: Context) : LinearLayout(context) {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(country: Country): CountryListItemView {
+    fun bind(country: Country?): CountryListItemView {
         mCountry = country
         mCountryName!!.setText(mCountry!!.name + ", " + mCountry!!.isoCode)
         return this

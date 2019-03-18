@@ -34,10 +34,10 @@ class FeaturedProductListItemView(context: Context) : LinearLayout(context) {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(featuredProduct: FeaturedProduct): FeaturedProductListItemView {
+    fun bind(featuredProduct: FeaturedProduct?): FeaturedProductListItemView {
         mFeaturedProduct = featuredProduct
         Glide.with(this)
-                .load(StringUtils.fixUrl(featuredProduct.thumb))
+                .load(StringUtils.fixUrl(featuredProduct!!.thumb))
                 .into(mProductImage!!)
         mProductName!!.setText(mFeaturedProduct!!.name)
         mProductPrice!!.setText(mFeaturedProduct!!.priceExcludingTaxFormatted)

@@ -11,14 +11,14 @@ import omniex.nl.omniex.ui.views.recycleritems.CountryListItemView
 @EBean
 class CountriesAdapter : BaseRecyclerAdapter<Country, CountryListItemView>() {
 
-    private var mOnCountrySelectedListener: OnCountrySelectedListener? = null
+    lateinit var mOnCountrySelectedListener: OnCountrySelectedListener
 
-    protected fun onCreateItemView(parent: ViewGroup, viewType: Int): CountryListItemView {
+    override fun onCreateItemView(parent: ViewGroup, viewType: Int): CountryListItemView {
         return CountryListItemView_.build(parent.context)
     }
 
-    fun onBindViewHolder(holder: ViewWrapper<CountryListItemView>, position: Int) {
-        holder.getView().bind(getItem(position)).setOnCountrySelectedListener(mOnCountrySelectedListener)
+   override fun onBindViewHolder(holder: ViewWrapper<CountryListItemView>, position: Int) {
+        holder.view.bind(getItem(position)).setOnCountrySelectedListener(mOnCountrySelectedListener)
     }
 
     fun setOnCountrySelectedListener(onCountrySelectedListener: OnCountrySelectedListener) {

@@ -17,7 +17,7 @@ open class ZoneListItemView(context: Context) : LinearLayout(context) {
     @ViewById(R.id.zone_item_name)
     lateinit var mZoneName: TextView
 
-    private var mOnZoneSelectedClickListener: ZonesAdapter.OnZoneSelectedClickListener? = null
+    lateinit var mOnZoneSelectedClickListener: ZonesAdapter.OnZoneSelectedClickListener
     private var mProvince: Province? = null
 
     init {

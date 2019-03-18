@@ -18,7 +18,7 @@ class OrderAddressesAdapter : BaseRecyclerAdapter<Address, OrderAddressItemView>
     }
 
     override fun onBindViewHolder(holder: ViewWrapper<OrderAddressItemView>, position: Int) {
-        holder.view.bind(getItem(position), position == mSelected).setItemClickListener(getItemClickListener())
+        holder.view.bind(getItem(position), position == mSelected).setItemClickListener(itemClickListener)
     }
 
     fun setSelected(selected: Int) {

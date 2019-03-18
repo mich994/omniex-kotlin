@@ -31,7 +31,7 @@ class CategoryItemView(context: Context) : FrameLayout(context) {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(category: Category): CategoryItemView {
+    fun bind(category: Category?): CategoryItemView {
         mCategory = category
         mCategoryName!!.setText(mCategory!!.name)
         Glide.with(this).load(StringUtils.fixUrl(mCategory!!.imageUrl)).into(mCategoryImage!!)

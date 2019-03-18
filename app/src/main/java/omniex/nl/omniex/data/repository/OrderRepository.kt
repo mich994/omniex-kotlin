@@ -12,17 +12,15 @@ import javax.inject.Inject
 class OrderRepository @Inject
 internal constructor(private val mOmniexApi: OmniexApi, private val mSharedPrefUtils: SharedPrefUtils) {
 
-    val orderOverview: Single<Response<Void>>
-        get() = mOmniexApi
-                .getOrderOverview(mSharedPrefUtils.accessToken())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+    fun orderOverview(): Single<Response<Void>> = mOmniexApi
+            .getOrderOverview(mSharedPrefUtils.accessToken())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
-    val orderStatuses: Single<Response<OrderStatusesResponse>>
-        get() = mOmniexApi
-                .getOrderStatuses(mSharedPrefUtils.accessToken(), 20, 1)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+    fun orderStatuses(): Single<Response<OrderStatusesResponse>> = mOmniexApi
+            .getOrderStatuses(mSharedPrefUtils.accessToken(), 20, 1)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
     fun simpleConfirm(): Single<Response<Void>> {
         return mOmniexApi

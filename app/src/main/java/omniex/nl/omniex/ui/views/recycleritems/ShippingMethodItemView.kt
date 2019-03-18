@@ -34,7 +34,7 @@ class ShippingMethodItemView(context: Context) : CardView(context) {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(shippingMethod: ShippingMethod): ShippingMethodItemView {
+    fun bind(shippingMethod: ShippingMethod?): ShippingMethodItemView {
         mShippingMethod = shippingMethod
         mTitle.text = mShippingMethod!!.weight!!.title
         mSubtitle.text = mShippingMethod!!.weight!!.quote!!.weightCode!!.title

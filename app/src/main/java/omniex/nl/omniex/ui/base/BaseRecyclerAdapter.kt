@@ -8,7 +8,7 @@ import java.util.*
 abstract class BaseRecyclerAdapter<T, V : View> : RecyclerView.Adapter<BaseRecyclerAdapter.ViewWrapper<V>>() {
 
     private val mItems = ArrayList<T>()
-    var itemClickListener: ItemClickListener<T>? = null
+    lateinit var itemClickListener: ItemClickListener<T>
     var onBottomReachedListener: OnBottomReachedListener? = null
 
     val items: List<T>

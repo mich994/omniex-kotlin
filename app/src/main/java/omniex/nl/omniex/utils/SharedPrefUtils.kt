@@ -40,13 +40,13 @@ internal constructor(private val mContext: Context) {
         private val sharedPref: SharedPreferences
             get() = Application.instance.getSharedPreferences("nl.omniex.omniexshopping", Context.MODE_PRIVATE)
 
-        var isUserLogged: Boolean
-            get() = sharedPref
-                    .getBoolean(IS_USER_LOGGED_KEY, false)
-            set(isLogged) = sharedPref
-                    .edit()
-                    .putBoolean(IS_USER_LOGGED_KEY, isLogged)
-                    .apply()
+        fun isUserLogged(): Boolean = sharedPref
+                .getBoolean(IS_USER_LOGGED_KEY, false)
+
+        fun setUserLogged(logged: Boolean) = sharedPref
+                .edit()
+                .putBoolean(IS_USER_LOGGED_KEY, logged)
+                .apply()
 
         fun setUserGuest(isGuest: Boolean) {
             sharedPref
@@ -68,12 +68,12 @@ internal constructor(private val mContext: Context) {
         fun isNewsletterSubscribed(): Boolean = sharedPref
                 .getBoolean(NEWSLETTER_STATUS_KEY, false)
 
-        var taxValue: Int?
-            get() = sharedPref
-                    .getInt(TAX_KEY, 1)
-            set(tax) = sharedPref
-                    .edit()
-                    .putInt(TAX_KEY, tax!!)
-                    .apply()
+        fun taxValue(): Int? = sharedPref
+                .getInt(TAX_KEY, 1)
+
+        fun setTax(tax: Int) = sharedPref
+                .edit()
+                .putInt(TAX_KEY, tax)
+                .apply()
     }
 }

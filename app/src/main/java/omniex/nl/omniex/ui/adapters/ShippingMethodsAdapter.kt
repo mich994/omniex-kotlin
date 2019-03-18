@@ -18,7 +18,7 @@ class ShippingMethodsAdapter : BaseRecyclerAdapter<ShippingMethod, ShippingMetho
     }
 
     override fun onBindViewHolder(holder: ViewWrapper<ShippingMethodItemView>, position: Int) {
-        holder.view.bind(getItem(position)).setItemClickListener(getItemClickListener()).setSelected(mSeleceted == position)
+        holder.view.bind(getItem(position)).setItemClickListener(itemClickListener).setSelected(mSeleceted == position)
     }
 
     fun setSelection(position: Int) {

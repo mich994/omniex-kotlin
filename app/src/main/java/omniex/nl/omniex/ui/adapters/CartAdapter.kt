@@ -17,7 +17,7 @@ import omniex.nl.omniex.ui.views.recycleritems.CartItemView
 @EBean
 class CartAdapter : BaseRecyclerAdapter<CartProduct, CartItemView>() {
 
-    private var mOnCartItemClickListener: OnCartItemClickListener? = null
+    lateinit var mOnCartItemClickListener: OnCartItemClickListener
     private var mIsFromOverview: Boolean = false
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int): CartItemView {

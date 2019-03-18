@@ -13,7 +13,7 @@ import org.androidannotations.annotations.EActivity
 import org.androidannotations.annotations.ViewById
 
 @EActivity(R.layout.activity_register)
-class RegisterActivity : BaseActivity<RegisterView, RegisterPresenter>(), RegisterView {
+open class RegisterActivity : BaseActivity<RegisterView, RegisterPresenter>(), RegisterView {
 
     @ViewById(R.id.register_input_email)
     lateinit var mEmail: EditText

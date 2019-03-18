@@ -11,7 +11,7 @@ import org.androidannotations.annotations.EBean
 @EBean
 class ZonesAdapter : BaseRecyclerAdapter<Province, ZoneListItemView>() {
 
-    private var mOnZoneSelectedClickListener: OnZoneSelectedClickListener? = null
+    lateinit var mOnZoneSelectedClickListener: OnZoneSelectedClickListener
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int): ZoneListItemView {
         return ZoneListItemView_.build(parent.context)

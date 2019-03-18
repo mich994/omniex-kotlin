@@ -43,7 +43,7 @@ class CartItemView(context: Context) : LinearLayout(context) {
     @ViewById(R.id.cart_item_quantity_remove)
     lateinit var mQuantityRemoveIv: ImageView
 
-    private var mOnCartItemClickListener: CartAdapter.OnCartItemClickListener? = null
+    lateinit var mOnCartItemClickListener: CartAdapter.OnCartItemClickListener
     private var mCartProduct: CartProduct? = null
     private var mQuantity: Int = 0
     private val mIsQuantityChanging: Boolean = false
@@ -54,10 +54,10 @@ class CartItemView(context: Context) : LinearLayout(context) {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(cartProduct: CartProduct, position: Int, isFromOverview: Boolean): CartItemView {
+    fun bind(cartProduct: CartProduct?, position: Int, isFromOverview: Boolean): CartItemView {
         mCartProduct = cartProduct
         mPosition = position
-        mQuantity = Integer.valueOf(cartProduct.quantity)
+        mQuantity = Integer.valueOf(cartProduct!!.quantity)
         mItemName!!.setText(mCartProduct!!.name)
         mPricePerOne!!.text = "Per one: " + mCartProduct!!.price
         mQuantityCount!!.text = mQuantity.toString()

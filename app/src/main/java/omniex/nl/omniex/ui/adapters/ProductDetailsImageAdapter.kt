@@ -10,7 +10,7 @@ import omniex.nl.omniex.ui.views.recycleritems.ProductDetailsImageItemView
 @EBean
 class ProductDetailsImageAdapter : BaseRecyclerAdapter<String, ProductDetailsImageItemView>() {
 
-    private var mDetailsImageClickListener: OnDetailsImageClickListener? = null
+    lateinit var mDetailsImageClickListener: OnDetailsImageClickListener
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int): ProductDetailsImageItemView {
         return ProductDetailsImageItemView_.build(parent.context)

@@ -11,7 +11,7 @@ import omniex.nl.omniex.ui.app.MainMenuActivity_
 import omniex.nl.omniex.utils.SharedPrefUtils
 
 @EActivity(R.layout.activity_start)
-class StartActivity : AppCompatActivity() {
+open class StartActivity : AppCompatActivity() {
 
     @Click(R.id.start_login_btn)
     internal fun onLoginClick() {

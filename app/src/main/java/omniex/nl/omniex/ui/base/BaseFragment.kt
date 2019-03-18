@@ -8,6 +8,9 @@ import dagger.Lazy
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import omniex.nl.omniex.R
+import omniex.nl.omniex.ui.base.menu.BaseMenuActivity
+import omniex.nl.omniex.ui.views.toolbar.CustomToolbar
 import org.androidannotations.annotations.AfterInject
 import org.androidannotations.annotations.EFragment
 import javax.inject.Inject
@@ -16,9 +19,8 @@ import javax.inject.Inject
 abstract class BaseFragment<V : BaseView, P : BasePresenter<V>> : MvpFragment<V, P>(), BaseView {
 
     private val mCompositeDisposable = CompositeDisposable()
-//    protected var baseActivity: BaseActivity? = null
-//        private set
-//    private var mBaseMenuActivity: BaseMenuActivity? = null
+    protected var baseActivity: BaseActivity<*,*>? = null
+    lateinit var mBaseMenuActivity: BaseMenuActivity<*,*,*>
     private var mEnableProgressBar: Boolean = false
 
     @Inject
@@ -48,15 +50,15 @@ abstract class BaseFragment<V : BaseView, P : BasePresenter<V>> : MvpFragment<V,
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-//        if (context is BaseActivity)
-//            baseActivity = activity as BaseActivity?
+        if (context is BaseActivity<*,*>)
+            baseActivity = activity as BaseActivity<*,*>?
     }
 
-    override fun onResume() {
+     override fun onResume() {
         super.onResume()
-//        if (baseActivity != null && baseActivity!!.getCustomToolbar() != null) {
-//            setToolbarIconMenuActivity()
-//        }
+        if (baseActivity != null && baseActivity!!.customToolbar != null) {
+            setToolbarIconMenuActivity()
+        }
     }
 
     protected fun goToFragment(fragment: Fragment, addToBackStack: Boolean) {
@@ -68,22 +70,29 @@ abstract class BaseFragment<V : BaseView, P : BasePresenter<V>> : MvpFragment<V,
         mCompositeDisposable.dispose()
     }
 
-//    protected fun setToolbarIconMenuActivity() {
-//        try {
-//            mBaseMenuActivity = activity as BaseMenuActivity?
-//            if (mBaseMenuActivity!!.getSupportFragmentManager().getBackStackEntryCount() > 1)
-//                baseActivity!!.getCustomToolbar()
-//                        .setIconStart(R.drawable.twotone_arrow_back_black_36)
-//                        .setIconStarClickListener({ mBaseMenuActivity!!.getSupportFragmentManager().popBackStack() })
-//            else
-//                baseActivity!!.getCustomToolbar()
-//                        .setIconStart(R.drawable.twotone_menu_black_36)
-//                        .setIconStarClickListener({ mBaseMenuActivity!!.toggleMenu() })
-//        } catch (e: ClassCastException) {
-//
-//        }
-//
-//    }
+    protected fun setToolbarIconMenuActivity() {
+        try {
+            mBaseMenuActivity = activity as BaseMenuActivity<*,*,*>
+            if (mBaseMenuActivity!!.getSupportFragmentManager().getBackStackEntryCount() > 1)
+                baseActivity!!.customToolbar
+                        .setIconStart(R.drawable.twotone_arrow_back_black_36)
+                        .setIconStarClickListener( object: CustomToolbar.IconStartClickListener{
+                            override fun onIconStartClick() {
+                                mBaseMenuActivity.getSupportFragmentManager().popBackStack()
+                            }
+                        })
+            else
+                baseActivity!!.customToolbar
+                        .setIconStart(R.drawable.twotone_menu_black_36)
+                        .setIconStarClickListener(object : CustomToolbar.IconStartClickListener{
+                            override fun onIconStartClick() {
+                                mBaseMenuActivity.toggleMenu()                            }
+                        })
+        } catch (e: ClassCastException) {
+
+        }
+
+    }
 
     protected fun addDisposable(disposable: Disposable) {
         mCompositeDisposable.add(disposable)
@@ -94,13 +103,13 @@ abstract class BaseFragment<V : BaseView, P : BasePresenter<V>> : MvpFragment<V,
         mEnableProgressBar = true
     }
 
-//    fun startLoading() {
-//        if (mEnableProgressBar)
-//            baseActivity!!.showProgressBar()
-//    }
-//
-//    fun stopLoading() {
-//        baseActivity!!.hideProgressBar()
-//        mEnableProgressBar = false
-//    }
+    override fun startLoading() {
+        if (mEnableProgressBar)
+            baseActivity!!.showProgressBar()
+    }
+
+    override fun stopLoading() {
+        baseActivity!!.hideProgressBar()
+        mEnableProgressBar = false
+    }
 }

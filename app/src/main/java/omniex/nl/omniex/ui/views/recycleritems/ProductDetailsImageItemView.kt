@@ -29,7 +29,7 @@ class ProductDetailsImageItemView(context: Context) : LinearLayout(context) {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(imageUrl: String, position: Int): ProductDetailsImageItemView {
+    fun bind(imageUrl: String?, position: Int): ProductDetailsImageItemView {
         mImageUrl = StringUtils.fixUrl(imageUrl)
         mPosition = position
         Glide.with(this).load(mImageUrl).into(mDetailsImage!!)

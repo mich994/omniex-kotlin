@@ -9,7 +9,7 @@ import org.androidannotations.annotations.EFragment
 import org.androidannotations.annotations.ViewById
 
 @EFragment(R.layout.fragment_about)
-class AboutFragment : BaseFragment<AboutView, AboutPresenter>(), AboutView {
+open class AboutFragment : BaseFragment<AboutView, AboutPresenter>(), AboutView {
 
     @ViewById(R.id.about_web_view)
     lateinit var mAboutWebView: WebView

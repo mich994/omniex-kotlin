@@ -18,6 +18,6 @@ class CategoriesAdapter : BaseRecyclerAdapter<Category, CategoryItemView>() {
     override fun onBindViewHolder(holder: ViewWrapper<CategoryItemView>, position: Int) {
         holder.view
                 .bind(getItem(position))
-                .setItemClickListener(getItemClickListener())
+                .setItemClickListener(itemClickListener)
     }
 }

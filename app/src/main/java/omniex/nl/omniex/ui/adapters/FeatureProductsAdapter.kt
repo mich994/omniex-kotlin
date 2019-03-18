@@ -22,6 +22,6 @@ class FeatureProductsAdapter : BaseRecyclerAdapter<FeaturedProduct, FeaturedProd
     override fun onBindViewHolder(holder: ViewWrapper<FeaturedProductListItemView>, position: Int) {
         holder.view
                 .bind(getItem(position))
-                .setProductItemClickListener(getItemClickListener())
+                .setProductItemClickListener(itemClickListener)
     }
 }

@@ -8,5 +8,5 @@ class ShippingAddressList {
     @SerializedName("address_id")
     val currentAddressId: String? = null
     @SerializedName("addresses")
-    val addressList: List<Address>? = null
+    val addressList: ArrayList<Address>? = null
 }
