@@ -1,18 +1,17 @@
 package omniex.nl.omniex.ui.app.order.payment.method
 
+import omniex.nl.omniex.data.model.payment.PaymentMethodSetter
+import omniex.nl.omniex.data.repository.PaymentRespository
+import omniex.nl.omniex.ui.base.BasePresenter
 import javax.inject.Inject
-
-import nl.omniex.omniexshopping.data.model.payment.PaymentMethodSetter
-import nl.omniex.omniexshopping.data.repository.PaymentRespository
-import nl.omniex.omniexshopping.ui.base.BasePresenter
 
 class OrderPaymentMethodsPresenter @Inject
 internal constructor(private val mPaymentRespository: PaymentRespository) : BasePresenter<OrderPaymentMethodsView>() {
 
     internal fun getPaymentMethods() {
         addDisposable(mPaymentRespository
-                .getPaymentMethods()
-                .subscribe({ voidResponse -> }, ???({ printStackTrace() })))
+                .paymentMethods()
+                .subscribe({ voidResponse -> }, { error -> error.printStackTrace() }))
     }
 
     internal fun setPaymentMethods(paymentMethod: PaymentMethodSetter) {
@@ -21,6 +20,6 @@ internal constructor(private val mPaymentRespository: PaymentRespository) : Base
                 .subscribe({ voidResponse ->
                     if (voidResponse.code() === 200)
                         ifViewAttached { view -> view.onPaymentMethodSet() }
-                }, ???({ printStackTrace() })))
+                }, { error -> error.printStackTrace() }))
     }
 }

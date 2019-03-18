@@ -3,41 +3,40 @@ package omniex.nl.omniex.ui.app.order.payment.method
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.Button
+import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
+import omniex.nl.omniex.R
+import omniex.nl.omniex.data.model.payment.PaymentMethodSetter
+import omniex.nl.omniex.ui.app.order.OrderActivity
+import omniex.nl.omniex.ui.base.BaseFragment
 
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment
 import org.androidannotations.annotations.ViewById
 
-import nl.omniex.omniexshopping.R
-import nl.omniex.omniexshopping.data.model.payment.PaymentMethodSetter
-import nl.omniex.omniexshopping.ui.app.order.OrderActivity
-import nl.omniex.omniexshopping.ui.app.order.overview.OrderOverviewFragment_
-import nl.omniex.omniexshopping.ui.base.BaseFragment
-
 @EFragment(R.layout.fragment_order_payment_methods)
-class OrderPaymentMethodsFragment : BaseFragment<OrderPaymentMethodsView, OrderPaymentMethodsPresenter>(), OrderPaymentMethodsView {
+open class OrderPaymentMethodsFragment : BaseFragment<OrderPaymentMethodsView, OrderPaymentMethodsPresenter>(), OrderPaymentMethodsView {
 
     @ViewById(R.id.payment_method_bank_cd)
-    internal var mBankCd: CardView? = null
+    lateinit var mBankCd: CardView
 
     @ViewById(R.id.payment_method_paypal_cd)
-    internal var mPaypalCd: CardView? = null
+    lateinit var mPaypalCd: CardView
 
     @ViewById(R.id.payment_method_next_btn)
-    internal var mNextBtn: Button? = null
+    lateinit var mNextBtn: Button
 
     private var mSelectedMethod: PaymentMethodSetter? = null
     private var mPaymentMethod: String? = null
     private var mOrderActivity: OrderActivity? = null
 
-    fun onResume() {
+     override fun onResume() {
         super.onResume()
-        mOrderActivity = getActivity() as OrderActivity
+        mOrderActivity = activity as OrderActivity
     }
 
     @AfterViews
-    internal fun getPaymentMethods() {
+    fun getPaymentMethods() {
         getPresenter().getPaymentMethods()
     }
 
@@ -60,11 +59,11 @@ class OrderPaymentMethodsFragment : BaseFragment<OrderPaymentMethodsView, OrderP
     @Click(R.id.payment_method_next_btn)
     internal fun onBtnNextClick() {
         if (mSelectedMethod != null)
-            getPresenter().setPaymentMethods(mSelectedMethod)
+            getPresenter().setPaymentMethods(mSelectedMethod!!)
     }
 
     override fun onPaymentMethodSet() {
-        mOrderActivity!!.setPaymentMethod(mPaymentMethod)
+        mOrderActivity!!.setPaymentMethod(mPaymentMethod!!)
         goToFragment(OrderOverviewFragment_.builder().build(), true)
     }
 }

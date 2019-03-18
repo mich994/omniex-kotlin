@@ -1,6 +1,7 @@
 package omniex.nl.omniex.ui.app.order.payment.method
 
-import nl.omniex.omniexshopping.ui.base.BaseView
+import omniex.nl.omniex.ui.base.BaseView
+
 
 interface OrderPaymentMethodsView : BaseView {
     fun onPaymentMethodSet()

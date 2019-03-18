@@ -1,32 +1,30 @@
 package omniex.nl.omniex.ui.app.order.shipping.method
 
-import java.util.ArrayList
-
+import omniex.nl.omniex.data.model.response.ShippingMethodResponse
+import omniex.nl.omniex.data.model.shipping.ShippingMethod
+import omniex.nl.omniex.data.model.shipping.ShippingMethodSetter
+import omniex.nl.omniex.data.repository.ShippingRepository
+import omniex.nl.omniex.ui.base.BasePresenter
+import java.util.*
 import javax.inject.Inject
-
-import nl.omniex.omniexshopping.data.model.response.ShippingMethodResponse
-import nl.omniex.omniexshopping.data.model.shipping.ShippingMethod
-import nl.omniex.omniexshopping.data.model.shipping.ShippingMethodSetter
-import nl.omniex.omniexshopping.data.repository.ShippingRepository
-import nl.omniex.omniexshopping.ui.base.BasePresenter
 
 class OrderShippingMethodPresenter @Inject
 internal constructor(private val mShippingRepository: ShippingRepository) : BasePresenter<OrderShippingMethodView>() {
 
     internal fun getShippingMethods() {
         addDisposable(mShippingRepository
-                .getShippingMethods()
+                .shippingMethods
                 .subscribe(
                         { shippingMethodResponse ->
                             if (shippingMethodResponse.code() === 200) {
-                                ifViewAttached { view -> view.onShippingMethodsFetched(createList(shippingMethodResponse.body())) }
+                                ifViewAttached { view -> view.onShippingMethodsFetched(createList(shippingMethodResponse.body()!!)) }
                             }
-                        }, ???({ printStackTrace() })))
+                        }, { it.printStackTrace() }))
     }
 
     private fun createList(shippingMethodResponse: ShippingMethodResponse): List<ShippingMethod> {
         val shippingMethods = ArrayList<ShippingMethod>()
-        shippingMethods.add(shippingMethodResponse.getShippingMethodWrapper().getShippingMethod())
+        shippingMethods.add(shippingMethodResponse.shippingMethodWrapper!!.shippingMethod!!)
         return shippingMethods
     }
 
@@ -37,6 +35,6 @@ internal constructor(private val mShippingRepository: ShippingRepository) : Base
                         { response ->
                             if (response.code() === 200)
                                 ifViewAttached { view -> view.onShippingMethodSet() }
-                        }, ???({ printStackTrace() })))
+                        }, { it.printStackTrace() }))
     }
 }

@@ -1,8 +1,17 @@
 package omniex.nl.omniex.ui.app.order.shipping.method
 
+import android.icu.lang.UScript.getCode
 import android.support.v7.widget.RecyclerView
 import android.widget.Button
 import android.widget.TextView
+import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
+import omniex.nl.omniex.R
+import omniex.nl.omniex.data.model.shipping.ShippingMethod
+import omniex.nl.omniex.data.model.shipping.ShippingMethodSetter
+import omniex.nl.omniex.ui.adapters.ShippingMethodsAdapter
+import omniex.nl.omniex.ui.app.order.OrderActivity
+import omniex.nl.omniex.ui.base.BaseFragment
+import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
 
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
@@ -11,41 +20,32 @@ import org.androidannotations.annotations.ViewById
 
 import javax.inject.Inject
 
-import nl.omniex.omniexshopping.R
-import nl.omniex.omniexshopping.data.model.shipping.ShippingMethod
-import nl.omniex.omniexshopping.data.model.shipping.ShippingMethodSetter
-import nl.omniex.omniexshopping.ui.adapters.ShippingMethodsAdapter
-import nl.omniex.omniexshopping.ui.app.order.OrderActivity
-import nl.omniex.omniexshopping.ui.app.order.payment.method.OrderPaymentMethodsFragment_
-import nl.omniex.omniexshopping.ui.base.BaseFragment
-import nl.omniex.omniexshopping.ui.base.BaseRecyclerAdapter
-
 @EFragment(R.layout.fragment_order_shipping)
 class OrderShippingMethodFragment : BaseFragment<OrderShippingMethodView, OrderShippingMethodPresenter>(), OrderShippingMethodView, BaseRecyclerAdapter.ItemClickListener<ShippingMethod> {
 
     @ViewById(R.id.order_shipping_rv)
-    internal var mShippingAddressRv: RecyclerView? = null
+    lateinit var mShippingAddressRv: RecyclerView
 
     @ViewById(R.id.order_shipping_empty_tv)
-    internal var mEmptyListTv: TextView? = null
+    lateinit var mEmptyListTv: TextView
 
     @ViewById(R.id.order_shipping_next_btn)
-    internal var mNextBtn: Button? = null
+    lateinit var mNextBtn: Button
 
     @Inject
-    internal var mShippingMethodsAdapter: ShippingMethodsAdapter? = null
+    lateinit var mShippingMethodsAdapter: ShippingMethodsAdapter
 
     private var mSelectedMethod: ShippingMethod? = null
     private var mOrderActivity: OrderActivity? = null
 
-    fun onResume() {
+   override fun onResume() {
         super.onResume()
         mOrderActivity = getActivity() as OrderActivity
     }
 
     @AfterViews
     internal fun initShippingMethodsList() {
-        mShippingMethodsAdapter!!.setItemClickListener(this)
+        mShippingMethodsAdapter!!.setClickListener(this)
         mShippingAddressRv!!.adapter = mShippingMethodsAdapter
         getPresenter().getShippingMethods()
     }
@@ -53,21 +53,21 @@ class OrderShippingMethodFragment : BaseFragment<OrderShippingMethodView, OrderS
     @Click(R.id.order_shipping_next_btn)
     internal fun onClick() {
         if (mSelectedMethod != null)
-            getPresenter().setShippingMethod(ShippingMethodSetter(mSelectedMethod!!.getWeight().getQuote().getWeightCode().getCode(), ""))
+            getPresenter().setShippingMethod(ShippingMethodSetter(mSelectedMethod!!.weight!!.quote!!.weightCode!!.code, ""))
     }
 
-    fun onShippingMethodsFetched(shippingMethods: List<ShippingMethod>) {
+    override fun onShippingMethodsFetched(shippingMethods: List<ShippingMethod>) {
         mShippingMethodsAdapter!!.setItems(shippingMethods)
     }
 
     override fun onShippingMethodSet() {
-        mOrderActivity!!.setShippingMethod(mSelectedMethod)
+        mOrderActivity!!.setShippingMethod(mSelectedMethod!!)
         goToFragment(OrderPaymentMethodsFragment_.builder().build(), true)
     }
 
     fun onItemClick(shippingMethod: ShippingMethod) {
         mSelectedMethod = shippingMethod
-        mShippingMethodsAdapter!!.setSelection(mShippingMethodsAdapter!!.getItems().indexOf(shippingMethod))
+        mShippingMethodsAdapter!!.setSelection(mShippingMethodsAdapter!!.items.indexOf(shippingMethod))
         mNextBtn!!.alpha = 1f
     }
 }

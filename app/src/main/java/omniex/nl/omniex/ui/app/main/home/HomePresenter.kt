@@ -1,39 +1,37 @@
 package omniex.nl.omniex.ui.app.main.home
 
-import javax.inject.Inject
-
-import nl.omniex.omniexshopping.data.repository.ProductsRepository
-import nl.omniex.omniexshopping.ui.base.BasePresenter
-import nl.omniex.omniexshopping.ui.base.BaseView
+import omniex.nl.omniex.data.repository.ProductsRepository
+import omniex.nl.omniex.ui.base.BasePresenter
 import timber.log.Timber
+import javax.inject.Inject
 
 class HomePresenter @Inject
 internal constructor(private val mProductsRepository: ProductsRepository) : BasePresenter<HomeView>() {
 
     internal fun getListOfFeatured() {
-        ifViewAttached(???({ BaseView.startLoading() }))
+        ifViewAttached { it.startLoading() }
         addDisposable(mProductsRepository
-                .getListOfFeatured()
+                .listOfFeatured()
                 .subscribe({ featureProductsResponse ->
                     if (featureProductsResponse.isSuccessful() && featureProductsResponse.code() === 200) {
                         ifViewAttached { view ->
                             view
                                     .onFeaturedProductsFetched(featureProductsResponse
-                                            .body()
-                                            .getProductWrappers()
+                                            .body()!!
+                                            .productWrappers!!
                                             .get(0)
-                                            .getFeaturedProducts())
+                                            .featuredProducts!!)
                         }
                     }
-                    ifViewAttached(???({ BaseView.stopLoading() }))
+                    ifViewAttached { it.stopLoading() }
                 }, { error ->
-                    ifViewAttached(???({ BaseView.stopLoading() }))
+                    ifViewAttached { it.stopLoading() }
                     Timber.e(error)
                 }))
     }
 
     internal fun getBestseller() {
-        addDisposable(mProductsRepository.getBestsellers()
-                .subscribe({ featuredProductsResponseResponse -> }, ???({ printStackTrace() })))
+        addDisposable(mProductsRepository.bestsellers()
+                .subscribe({ featuredProductsResponseResponse -> }, { error -> error.printStackTrace() }))
     }
 }
