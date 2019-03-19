@@ -1,15 +1,14 @@
 package omniex.nl.omniex.ui.adapters
 
 import android.view.ViewGroup
-
-import org.androidannotations.annotations.EBean
-
 import omniex.nl.omniex.data.model.products.Category
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
 import omniex.nl.omniex.ui.views.recycleritems.CategoryItemView
+import omniex.nl.omniex.ui.views.recycleritems.CategoryItemView_
+import org.androidannotations.annotations.EBean
 
 @EBean
-class CategoriesAdapter : BaseRecyclerAdapter<Category, CategoryItemView>() {
+open class CategoriesAdapter : BaseRecyclerAdapter<Category, CategoryItemView>() {
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int): CategoryItemView {
         return CategoryItemView_.build(parent.context)

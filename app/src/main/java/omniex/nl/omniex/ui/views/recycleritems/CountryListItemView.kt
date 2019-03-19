@@ -15,10 +15,10 @@ import org.androidannotations.annotations.ViewById
 
 
 @EViewGroup(R.layout.view_country_list_item)
-class CountryListItemView(context: Context) : LinearLayout(context) {
+open class CountryListItemView(context: Context) : LinearLayout(context) {
 
     @ViewById(R.id.country_item_name)
-    internal var mCountryName: TextView? = null
+    lateinit var mCountryName: TextView
 
     private var mOnCountrySelectedListener: CountriesAdapter.OnCountrySelectedListener? = null
     private var mCountry: Country? = null

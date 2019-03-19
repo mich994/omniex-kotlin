@@ -14,7 +14,7 @@ import org.androidannotations.annotations.ViewById
 
 
 @EViewGroup(R.layout.view_order_status_item)
-class OrderStatusItemView(context: Context) : LinearLayout(context) {
+open class OrderStatusItemView(context: Context) : LinearLayout(context) {
 
     @ViewById(R.id.order_status_name)
     lateinit var mName: TextView

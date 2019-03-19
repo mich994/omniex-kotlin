@@ -4,19 +4,16 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
-import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.address.Address
 import omniex.nl.omniex.ui.adapters.AddressesAdapter
+import omniex.nl.omniex.ui.app.profile.address.edit.EditAddressActivity_
 import omniex.nl.omniex.ui.base.BaseFragment
-
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment
 import org.androidannotations.annotations.ViewById
-
-import java.util.ArrayList
-
+import java.util.*
 import javax.inject.Inject
 
 @EFragment(R.layout.fragment_profile_address)

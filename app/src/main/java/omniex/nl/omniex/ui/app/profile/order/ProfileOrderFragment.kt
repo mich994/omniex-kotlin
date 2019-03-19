@@ -14,10 +14,10 @@ import javax.inject.Inject
 open class ProfileOrderFragment : BaseFragment<ProfileOrderView, ProfileOrderPresenter>(), ProfileOrderView {
 
     @ViewById(R.id.profile_order_list_rv)
-    internal var mOrdersRv: RecyclerView? = null
+    lateinit var mOrdersRv: RecyclerView
 
     @Inject
-    internal var mOrderStatutesAdapter: OrderStatutesAdapter? = null
+    lateinit var mOrderStatutesAdapter: OrderStatutesAdapter
 
     @AfterViews
     internal fun initOrdersList() {

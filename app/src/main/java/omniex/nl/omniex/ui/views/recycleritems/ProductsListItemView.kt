@@ -18,7 +18,7 @@ import org.androidannotations.annotations.ViewById
 
 
 @EViewGroup(R.layout.view_product_list_item)
-class ProductsListItemView(context: Context) : FrameLayout(context) {
+open class ProductsListItemView(context: Context) : FrameLayout(context) {
 
     @ViewById(R.id.product_list_item_image)
     lateinit var mProductImage: ImageView

@@ -1,15 +1,14 @@
 package omniex.nl.omniex.ui.adapters
 
 import android.view.ViewGroup
-
-import org.androidannotations.annotations.EBean
-
 import omniex.nl.omniex.data.model.shipping.ShippingMethod
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
 import omniex.nl.omniex.ui.views.recycleritems.ShippingMethodItemView
+import omniex.nl.omniex.ui.views.recycleritems.ShippingMethodItemView_
+import org.androidannotations.annotations.EBean
 
 @EBean
-class ShippingMethodsAdapter : BaseRecyclerAdapter<ShippingMethod, ShippingMethodItemView>() {
+open class ShippingMethodsAdapter : BaseRecyclerAdapter<ShippingMethod, ShippingMethodItemView>() {
 
     private var mSeleceted = -1
 

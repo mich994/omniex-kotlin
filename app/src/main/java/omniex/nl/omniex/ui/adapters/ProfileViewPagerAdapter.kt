@@ -3,8 +3,10 @@ package omniex.nl.omniex.ui.adapters
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import omniex.nl.omniex.ui.app.profile.address.ProfileAddressFragment_
+import omniex.nl.omniex.ui.app.profile.order.ProfileOrderFragment_
 
-class ProfileViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+open class ProfileViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return if (position == 0)

@@ -1,15 +1,14 @@
 package omniex.nl.omniex.ui.adapters
 
 import android.view.ViewGroup
-
-import org.androidannotations.annotations.EBean
-
 import omniex.nl.omniex.data.model.address.Country
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
 import omniex.nl.omniex.ui.views.recycleritems.CountryListItemView
+import omniex.nl.omniex.ui.views.recycleritems.CountryListItemView_
+import org.androidannotations.annotations.EBean
 
 @EBean
-class CountriesAdapter : BaseRecyclerAdapter<Country, CountryListItemView>() {
+open class CountriesAdapter : BaseRecyclerAdapter<Country, CountryListItemView>() {
 
     lateinit var mOnCountrySelectedListener: OnCountrySelectedListener
 

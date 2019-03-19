@@ -1,19 +1,14 @@
 package omniex.nl.omniex.ui.adapters
 
 import android.view.ViewGroup
-
-import org.androidannotations.annotations.EBean
-
-import nl.omniex.omniexshopping.data.model.address.Address
-import nl.omniex.omniexshopping.ui.base.BaseRecyclerAdapter
-import nl.omniex.omniexshopping.ui.views.recycleritems.AddressListItemView
-import nl.omniex.omniexshopping.ui.views.recycleritems.AddressListItemView_
 import omniex.nl.omniex.data.model.address.Address
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
 import omniex.nl.omniex.ui.views.recycleritems.AddressListItemView
+import omniex.nl.omniex.ui.views.recycleritems.AddressListItemView_
+import org.androidannotations.annotations.EBean
 
 @EBean
-class AddressesAdapter : BaseRecyclerAdapter<Address, AddressListItemView>() {
+open class AddressesAdapter : BaseRecyclerAdapter<Address, AddressListItemView>() {
 
     private var mOnAddressListItemClickListener: OnAddressListItemClickListener? = null
 

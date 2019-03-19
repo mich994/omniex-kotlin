@@ -12,7 +12,7 @@ import org.androidannotations.annotations.EViewGroup
 import org.androidannotations.annotations.ViewById
 
 @EViewGroup(R.layout.view_shipping_method_item)
-class ShippingMethodItemView(context: Context) : CardView(context) {
+open class ShippingMethodItemView(context: Context) : CardView(context) {
 
     @ViewById(R.id.shipping_method_cd)
     lateinit var mShippingMethodCd: CardView

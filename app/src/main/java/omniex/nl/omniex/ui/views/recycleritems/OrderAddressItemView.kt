@@ -12,7 +12,7 @@ import org.androidannotations.annotations.EViewGroup
 import org.androidannotations.annotations.ViewById
 
 @EViewGroup(R.layout.view_order_address_item)
-class OrderAddressItemView(context: Context) : CardView(context) {
+open class OrderAddressItemView(context: Context) : CardView(context) {
 
     @ViewById(R.id.order_address_cd)
     lateinit var mOrderAddressCd: CardView

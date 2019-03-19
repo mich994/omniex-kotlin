@@ -1,14 +1,13 @@
 package omniex.nl.omniex.ui.adapters
 
 import android.view.ViewGroup
-
-import org.androidannotations.annotations.EBean
-
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
 import omniex.nl.omniex.ui.views.recycleritems.ProductDetailsImageItemView
+import omniex.nl.omniex.ui.views.recycleritems.ProductDetailsImageItemView_
+import org.androidannotations.annotations.EBean
 
 @EBean
-class ProductDetailsImageAdapter : BaseRecyclerAdapter<String, ProductDetailsImageItemView>() {
+open class ProductDetailsImageAdapter : BaseRecyclerAdapter<String, ProductDetailsImageItemView>() {
 
     lateinit var mDetailsImageClickListener: OnDetailsImageClickListener
 

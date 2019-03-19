@@ -11,6 +11,6 @@ open class OrderCompleteFragment : BaseFragment<OrderCompleteView, OrderComplete
 
     @Click(R.id.order_complete_btn)
     fun onBackBtnClick() {
-        getActivity()!!.finish()
+        activity!!.finish()
     }
 }

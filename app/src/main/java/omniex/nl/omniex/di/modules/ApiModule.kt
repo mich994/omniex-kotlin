@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 class ApiModule {
 
     @Provides
-    internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -26,7 +26,7 @@ class ApiModule {
     }
 
     @Provides
-    internal fun provideOkHttpClient(): OkHttpClient {
+     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
@@ -36,7 +36,8 @@ class ApiModule {
     }
 
     @Provides
-    internal fun provideApiCalls(retrofit: Retrofit): OmniexApi {
-        return retrofit.create<OmniexApi>(OmniexApi::class.java!!)
+     fun provideApiCalls(retrofit: Retrofit): OmniexApi {
+        return retrofit.create(OmniexApi::class.java)
     }
+
 }

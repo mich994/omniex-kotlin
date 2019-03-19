@@ -3,18 +3,16 @@ package omniex.nl.omniex.ui.app.order.overview
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
-import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.order.OrderOverview
 import omniex.nl.omniex.ui.adapters.CartAdapter
 import omniex.nl.omniex.ui.app.order.OrderActivity
+import omniex.nl.omniex.ui.app.order.complete.OrderCompleteFragment_
 import omniex.nl.omniex.ui.base.BaseFragment
-
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment
 import org.androidannotations.annotations.ViewById
-
 import javax.inject.Inject
 
 
@@ -81,7 +79,7 @@ open class OrderOverviewFragment : BaseFragment<OrderOverviewView, OrderOverview
     @Click(R.id.order_overview_cancel_btn, R.id.order_overview_confirm_btn)
     internal fun onClick(v: View) {
         when (v.id) {
-            R.id.order_overview_cancel_btn -> getActivity().finish()
+            R.id.order_overview_cancel_btn -> activity!!.finish()
             R.id.order_overview_confirm_btn -> getPresenter().confirmOrder()
         }
     }

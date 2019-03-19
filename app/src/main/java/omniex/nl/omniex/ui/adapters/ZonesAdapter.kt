@@ -4,12 +4,13 @@ import android.view.ViewGroup
 import omniex.nl.omniex.data.model.address.Province
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
 import omniex.nl.omniex.ui.views.recycleritems.ZoneListItemView
+import omniex.nl.omniex.ui.views.recycleritems.ZoneListItemView_
 
 import org.androidannotations.annotations.EBean
 
 
 @EBean
-class ZonesAdapter : BaseRecyclerAdapter<Province, ZoneListItemView>() {
+open class ZonesAdapter : BaseRecyclerAdapter<Province, ZoneListItemView>() {
 
     lateinit var mOnZoneSelectedClickListener: OnZoneSelectedClickListener
 

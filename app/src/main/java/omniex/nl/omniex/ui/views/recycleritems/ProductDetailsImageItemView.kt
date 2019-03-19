@@ -15,7 +15,7 @@ import org.androidannotations.annotations.EViewGroup
 import org.androidannotations.annotations.ViewById
 
 @EViewGroup(R.layout.view_details_image_item)
-class ProductDetailsImageItemView(context: Context) : LinearLayout(context) {
+open class ProductDetailsImageItemView(context: Context) : LinearLayout(context) {
 
     @ViewById(R.id.details_item_image)
     lateinit var mDetailsImage: ImageView

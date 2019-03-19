@@ -12,7 +12,7 @@ import org.androidannotations.annotations.ViewById
 
 
 @EFragment(R.layout.fragment_profile)
-class ProfileFragment : BaseFragment<ProfileView, ProfilePresenter>(), ProfileView {
+open class ProfileFragment : BaseFragment<ProfileView, ProfilePresenter>(), ProfileView {
 
     @ViewById(R.id.profile_vp)
     lateinit var mProfileVp: ViewPager

@@ -4,19 +4,18 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.address.Address
 import omniex.nl.omniex.ui.adapters.OrderAddressesAdapter
 import omniex.nl.omniex.ui.app.order.OrderActivity
+import omniex.nl.omniex.ui.app.order.payment.OrderPaymentFragment_
+import omniex.nl.omniex.ui.app.profile.address.edit.EditAddressActivity_
 import omniex.nl.omniex.ui.base.BaseFragment
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
-
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment
 import org.androidannotations.annotations.ViewById
-
 import javax.inject.Inject
 
 @EFragment(R.layout.fragment_order_shipping)
@@ -76,7 +75,7 @@ open class OrderShippingFragment : BaseFragment<OrderShippingView, OrderShipping
         goToFragment(OrderPaymentFragment_.builder().build(), true)
     }
 
-    fun onItemClick(address: Address) {
+    override fun onItemClick(address: Address?) {
         mOrderAddressesAdapter!!.setSelected(mOrderAddressesAdapter!!.items.indexOf(address))
         mSelectedAddress = address
         mNextBtn!!.alpha = 1f

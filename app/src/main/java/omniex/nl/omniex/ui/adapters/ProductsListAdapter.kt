@@ -1,15 +1,14 @@
 package omniex.nl.omniex.ui.adapters
 
 import android.view.ViewGroup
-
-import org.androidannotations.annotations.EBean
-
 import omniex.nl.omniex.data.model.products.Product
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
 import omniex.nl.omniex.ui.views.recycleritems.ProductsListItemView
+import omniex.nl.omniex.ui.views.recycleritems.ProductsListItemView_
+import org.androidannotations.annotations.EBean
 
 @EBean
-class ProductsListAdapter : BaseRecyclerAdapter<Product, ProductsListItemView>() {
+open class ProductsListAdapter : BaseRecyclerAdapter<Product, ProductsListItemView>() {
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int): ProductsListItemView {
         return ProductsListItemView_.build(parent.context)

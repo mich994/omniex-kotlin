@@ -5,7 +5,7 @@ import android.support.multidex.MultiDex
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
-class Application : DaggerApplication() {
+open class Application : DaggerApplication() {
 
     val mInstance: Application
 
@@ -14,13 +14,25 @@ class Application : DaggerApplication() {
     }
 
     companion object {
-        lateinit var instance: Application
-            private set
+        lateinit var application: Application
+
+        val instance: Application
+            get() {
+                if (application == null) {
+                    application = Application()
+                }
+
+                return application
+            }
     }
 
     override fun onCreate() {
         super.onCreate()
 
+    }
+
+    override fun getApplicationContext(): Context {
+        return super.getApplicationContext()
     }
 
     override fun attachBaseContext(base: Context) {

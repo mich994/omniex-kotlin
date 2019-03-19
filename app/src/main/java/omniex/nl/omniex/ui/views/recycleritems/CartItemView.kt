@@ -17,7 +17,7 @@ import org.androidannotations.annotations.EViewGroup
 import org.androidannotations.annotations.ViewById
 
 @EViewGroup(R.layout.view_cart_item)
-class CartItemView(context: Context) : LinearLayout(context) {
+open class CartItemView(context: Context) : LinearLayout(context) {
 
     @ViewById(R.id.cart_item_image)
     lateinit var mCartImage: ImageView

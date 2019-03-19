@@ -2,18 +2,16 @@ package omniex.nl.omniex.ui.app.product.list
 
 import android.app.AlertDialog
 import android.support.v7.widget.RecyclerView
-import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.products.Product
 import omniex.nl.omniex.ui.adapters.ProductsListAdapter
+import omniex.nl.omniex.ui.app.product.ProductDetailsFragment_
 import omniex.nl.omniex.ui.base.BaseFragment
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
-
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.EFragment
 import org.androidannotations.annotations.FragmentArg
 import org.androidannotations.annotations.ViewById
-
 import javax.inject.Inject
 
 @EFragment(R.layout.fragment_products_list)
@@ -28,6 +26,7 @@ open class ProductsListFragment : BaseFragment<ProductsListView, ProductsListPre
     @FragmentArg
     lateinit var mCategoryId: Integer
 
+    @JvmField
     @FragmentArg
     var mIsBestSellersList: Boolean? = null
 
@@ -54,8 +53,8 @@ open class ProductsListFragment : BaseFragment<ProductsListView, ProductsListPre
         mProductsListAdapter!!.setItems(productList)
     }
 
-    fun onItemClick(product: Product) {
-        goToFragment(ProductDetailsFragment_.builder().mProductId(product.productId).build(), true)
+    override fun onItemClick(product: Product?) {
+        goToFragment(ProductDetailsFragment_.builder().mProductId(product!!.productId!!).build(), true)
     }
 
 }

@@ -3,9 +3,10 @@ package omniex.nl.omniex.ui.adapters
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import omniex.nl.omniex.ui.views.fragments.DetailsImageFragment_
 
 
-class DetailsImagePagerAdapter(fm: FragmentManager, private var mImageUrls: List<String>?) : FragmentStatePagerAdapter(fm) {
+open class DetailsImagePagerAdapter(fm: FragmentManager, private var mImageUrls: List<String>?) : FragmentStatePagerAdapter(fm) {
 
     fun setImageUrls(imageUrls: List<String>) {
         mImageUrls = imageUrls

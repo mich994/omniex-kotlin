@@ -12,7 +12,7 @@ import org.androidannotations.annotations.ViewById
 
 
 @EBean
-class CustomToolbar {
+open class CustomToolbar {
 
     @ViewById(R.id.toolbar)
     lateinit var mToolbar: Toolbar

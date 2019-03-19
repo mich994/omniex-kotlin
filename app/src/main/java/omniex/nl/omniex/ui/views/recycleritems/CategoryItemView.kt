@@ -15,7 +15,7 @@ import org.androidannotations.annotations.EViewGroup
 import org.androidannotations.annotations.ViewById
 
 @EViewGroup(R.layout.view_category_item)
-class CategoryItemView(context: Context) : FrameLayout(context) {
+open class CategoryItemView(context: Context) : FrameLayout(context) {
 
     @ViewById(R.id.category_item_image)
     lateinit var mCategoryImage: ImageView

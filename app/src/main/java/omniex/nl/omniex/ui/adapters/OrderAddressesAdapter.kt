@@ -1,15 +1,14 @@
 package omniex.nl.omniex.ui.adapters
 
 import android.view.ViewGroup
-
-import org.androidannotations.annotations.EBean
-
 import omniex.nl.omniex.data.model.address.Address
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
 import omniex.nl.omniex.ui.views.recycleritems.OrderAddressItemView
+import omniex.nl.omniex.ui.views.recycleritems.OrderAddressItemView_
+import org.androidannotations.annotations.EBean
 
 @EBean
-class OrderAddressesAdapter : BaseRecyclerAdapter<Address, OrderAddressItemView>() {
+open class OrderAddressesAdapter : BaseRecyclerAdapter<Address, OrderAddressItemView>() {
 
     private var mSelected = -1
 

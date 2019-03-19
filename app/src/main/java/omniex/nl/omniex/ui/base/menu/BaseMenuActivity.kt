@@ -23,7 +23,7 @@ abstract class BaseMenuActivity<MenuAdapter : BaseMenuAdapter<*, *>, MView : Bas
      var mOverlay: View?=null
 
     @get:IdRes
-    protected abstract val overlayRes: Int
+    abstract val overlayRes: Int
 
     val baseMenuActivity: BaseMenuActivity<*, *, *>
         get() = this

@@ -1,17 +1,15 @@
 package omniex.nl.omniex.ui.app.main.home
 
 import android.support.v7.widget.RecyclerView
-import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.products.FeaturedProduct
 import omniex.nl.omniex.ui.adapters.FeatureProductsAdapter
+import omniex.nl.omniex.ui.app.product.ProductDetailsFragment_
 import omniex.nl.omniex.ui.base.BaseFragment
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
-
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.EFragment
 import org.androidannotations.annotations.ViewById
-
 import javax.inject.Inject
 
 

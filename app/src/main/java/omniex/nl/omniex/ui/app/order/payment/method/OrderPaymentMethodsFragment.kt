@@ -3,12 +3,11 @@ package omniex.nl.omniex.ui.app.order.payment.method
 import android.support.v7.widget.CardView
 import android.view.View
 import android.widget.Button
-import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.payment.PaymentMethodSetter
 import omniex.nl.omniex.ui.app.order.OrderActivity
+import omniex.nl.omniex.ui.app.order.overview.OrderOverviewFragment_
 import omniex.nl.omniex.ui.base.BaseFragment
-
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment

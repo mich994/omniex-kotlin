@@ -37,8 +37,7 @@ internal constructor(private val mContext: Context) {
         private val NEWSLETTER_STATUS_KEY = "IS_SUBSCRIBED"
         private val TAX_KEY = "TAX"
 
-        private val sharedPref: SharedPreferences
-            get() = Application.instance.getSharedPreferences("nl.omniex.omniexshopping", Context.MODE_PRIVATE)
+        var sharedPref: SharedPreferences = Application.instance.getSharedPreferences("omniex.nl.omniex", Context.MODE_PRIVATE)
 
         fun isUserLogged(): Boolean = sharedPref
                 .getBoolean(IS_USER_LOGGED_KEY, false)

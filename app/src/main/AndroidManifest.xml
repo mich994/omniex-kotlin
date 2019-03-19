@@ -11,13 +11,44 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.app.MainMenuActivity_"
+            android:name=".ui.app.splash.SplashActivity_"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.app.main.MainMenuActivity_"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.app.auth.login.LoginActivity_"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.app.auth.register.RegisterActivity_"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.app.auth.StartActivity_"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.app.profile.address.edit.EditAddressActivity_"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.app.order.OrderActivity_"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

@@ -7,10 +7,20 @@ import omniex.nl.omniex.data.model.MenuItem
 import omniex.nl.omniex.data.model.cart.Cart
 import omniex.nl.omniex.data.model.cart.CartItemDelete
 import omniex.nl.omniex.data.model.cart.CartQuantitySetter
+import omniex.nl.omniex.ui.app.about.AboutFragment_
+import omniex.nl.omniex.ui.app.auth.StartActivity_
+import omniex.nl.omniex.ui.app.categories.CategoriesFragment_
+import omniex.nl.omniex.ui.app.main.home.HomeFragment_
+import omniex.nl.omniex.ui.app.newsletter.NewsletterFragment_
+import omniex.nl.omniex.ui.app.order.OrderActivity_
+import omniex.nl.omniex.ui.app.product.list.ProductsListFragment_
+import omniex.nl.omniex.ui.app.profile.ProfileFragment_
 import omniex.nl.omniex.ui.base.menu.BaseMenuActivity
 import omniex.nl.omniex.ui.base.menu.MenuAdapter
 import omniex.nl.omniex.ui.base.menu.MenuHelper
 import omniex.nl.omniex.ui.views.dialogs.cart.CartDialog
+import omniex.nl.omniex.ui.views.dialogs.cart.CartDialog_
+import omniex.nl.omniex.ui.views.toolbar.CustomToolbar
 import omniex.nl.omniex.utils.SharedPrefUtils
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.EActivity
@@ -19,7 +29,7 @@ import java.util.*
 
 
 @EActivity(R.layout.activity_main_menu)
-open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMenuPresenter>(), MainMenuView, MenuHelper.MenuBase<MenuAdapter> /*CartDialog.OnUpdateItemQuantityListener, CartDialog.OnMakeOrderClickListener*/ {
+open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMenuPresenter>(), MainMenuView, MenuHelper.MenuBase<MenuAdapter>, CartDialog.OnUpdateItemQuantityListener, CartDialog.OnMakeOrderClickListener {
 
     @ViewById(R.id.duo_view_menu_background)
     lateinit var mDuo: ImageView
@@ -129,13 +139,17 @@ open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMe
         toggleMenu()
     }
 
-    private fun setToolbar() {
-        getCustomToolbar()
+    fun setToolbar() {
+        customToolbar
                 .setIconEnd(R.drawable.twotone_shopping_cart_black_36)
-                .setIconEndClickListener({ getPresenter().getCart() })
+                .setIconEndClickListener(object : CustomToolbar.IconEndClickListner{
+                    override fun onIconEndClick() {
+                        getPresenter().getCart()
+                    }
+                })
     }
 
-    fun onCartFetched(cart: Cart) {
+    override fun onCartFetched(cart: Cart) {
         if (SharedPrefUtils.isUserLogged()) {
             if (!mIsCartOpen) {
                 mCartDialog = CartDialog_.builder().mCart(cart).build().setOnUpdateItemQuantityListener(this).setOnMakeOrderClickListener(this)
@@ -149,19 +163,19 @@ open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMe
         }
     }
 
-    fun onMakeOrderClick() {
+   override fun onMakeOrderClick() {
         OrderActivity_.intent(this).start()
     }
 
-    fun onCartDismiss() {
+    override fun onCartDismiss() {
         mIsCartOpen = false
     }
 
-    fun onUpdateQuantity(productKey: String, quantity: Int) {
+    override fun onUpdateQuantity(productKey: String, quantity: Int) {
         getPresenter().updateCartQuantity(CartQuantitySetter(productKey, quantity))
     }
 
-    fun onRemoveCartItem(cartItemDelete: CartItemDelete) {
+    override fun onRemoveCartItem(cartItemDelete: CartItemDelete) {
         getPresenter().deleteCartItem(cartItemDelete)
     }
 
@@ -182,7 +196,7 @@ open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMe
 
     override fun onLogoutSuccess() {
         finishAffinity()
-//        StartActivity_.intent(this).start()
+        StartActivity_.intent(this).start()
     }
 //
     override fun startLoading() {

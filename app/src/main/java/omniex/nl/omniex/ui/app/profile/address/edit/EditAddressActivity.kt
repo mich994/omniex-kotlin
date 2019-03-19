@@ -2,61 +2,59 @@ package omniex.nl.omniex.ui.app.profile.address.edit
 
 import android.widget.EditText
 import android.widget.TextView
-
-import org.androidannotations.annotations.AfterViews
-import org.androidannotations.annotations.Click
-import org.androidannotations.annotations.EActivity
-import org.androidannotations.annotations.Extra
-import org.androidannotations.annotations.ViewById
-
-import java.util.ArrayList
-
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.address.AddAddress
+import omniex.nl.omniex.data.model.address.Address
 import omniex.nl.omniex.data.model.address.Country
 import omniex.nl.omniex.data.model.address.Province
 import omniex.nl.omniex.ui.adapters.CountriesAdapter
 import omniex.nl.omniex.ui.adapters.ZonesAdapter
 import omniex.nl.omniex.ui.base.BaseActivity
+import omniex.nl.omniex.ui.views.dialogs.address.CountryDialog_
+import omniex.nl.omniex.ui.views.dialogs.address.ZoneDialog_
+import omniex.nl.omniex.ui.views.toolbar.CustomToolbar
+import org.androidannotations.annotations.*
+import java.util.*
 
 
 @EActivity(R.layout.activity_edit_address)
 open class EditAddressActivity : BaseActivity<EditAddressView, EditAddressPresenter>(), EditAddressView, CountriesAdapter.OnCountrySelectedListener, ZonesAdapter.OnZoneSelectedClickListener {
 
     @ViewById(R.id.edit_address_input_first_name)
-    internal var mInputFirstName: EditText? = null
+    lateinit var mInputFirstName: EditText
 
     @ViewById(R.id.edit_address_input_last_name)
-    internal var mInputLastName: EditText? = null
+    lateinit var mInputLastName: EditText
 
     @ViewById(R.id.edit_address_input_company_name)
-    internal var mInputCompanyName: EditText? = null
+    lateinit var mInputCompanyName: EditText
 
     @ViewById(R.id.edit_address_input_company_address)
-    internal var mInputCompanyAddress: EditText? = null
+    lateinit var mInputCompanyAddress: EditText
 
     @ViewById(R.id.edit_address_input_city)
-    internal var mInputCity: EditText? = null
+    lateinit var mInputCity: EditText
 
     @ViewById(R.id.edit_address_input_post_code)
-    internal var mInputPostCode: EditText? = null
+    lateinit var mInputPostCode: EditText
 
     @ViewById(R.id.edit_address_country_tv)
-    internal var mCountry: TextView? = null
+    lateinit var mCountry: TextView
 
     @ViewById(R.id.edit_address_zone_tv)
-    internal var mZone: TextView? = null
+    lateinit var mZone: TextView
+
+    @JvmField
+    @Extra
+    var mIsNewAddress: Boolean? = null
 
     @Extra
-    internal var mIsNewAddress: Boolean? = null
-
-    @Extra
-    internal var mAddress: Address? = null
+    lateinit var mAddress: Address
 
     private var mSelectedCountry: Country? = null
     private var mSelectedZone: Province? = null
 
-    protected override fun onFirstCreate() {
+    override fun onFirstCreate() {
         super.onFirstCreate()
         setToolbar()
     }
@@ -64,27 +62,35 @@ open class EditAddressActivity : BaseActivity<EditAddressView, EditAddressPresen
     private fun setToolbar() {
         customToolbar
                 .setIconStart(R.drawable.twotone_arrow_back_black_36)
-                .setIconStarClickListener(IconStartClickListener { this.finish() })
-        if ((!mIsNewAddress)!!) {
+                .setIconStarClickListener(object:CustomToolbar.IconStartClickListener {
+                    override fun onIconStartClick() {
+                        this@EditAddressActivity.finish()
+                    }
+                })
+        if ((mIsNewAddress)!!) {
             customToolbar
                     .setIconEnd(R.drawable.baseline_delete_outline_black_36)
-                    .setIconEndClickListener({ getPresenter().removeAddress(Integer.valueOf(mAddress!!.getAddressId())) })
+                    .setIconEndClickListener(object : CustomToolbar.IconEndClickListner{
+                        override fun onIconEndClick() {
+                            getPresenter().removeAddress(Integer.valueOf(mAddress!!.addressId))
+                        }
+                    })
         }
     }
 
     @AfterViews
     internal fun setupDetails() {
         if ((mIsNewAddress)!! && mAddress != null) {
-            mInputFirstName!!.setText(mAddress!!.getFirstName())
-            mInputLastName!!.setText(mAddress!!.getLastName())
-            mInputCompanyName!!.setText(mAddress!!.getCompanyName())
-            mInputCompanyAddress!!.setText(mAddress!!.getAddressOne())
-            mInputCity!!.setText(mAddress!!.getCity())
-            mCountry!!.setText(mAddress!!.getCountryNameFormated())
-            mZone!!.setText(mAddress!!.getZoneNameFormated())
-            mInputPostCode!!.setText(mAddress!!.getPostcode())
-            mSelectedCountry = Country(Integer.valueOf(mAddress!!.getCountryId()), mAddress!!.getCountry(), mAddress!!.getIsoCodeTwo())
-            mSelectedZone = Province(mAddress!!.getZoneId(), mAddress!!.getCountryId(), mAddress!!.getZoneName(), mAddress!!.getZoneCode())
+            mInputFirstName!!.setText(mAddress!!.firstName)
+            mInputLastName!!.setText(mAddress!!.lastName)
+            mInputCompanyName!!.setText(mAddress!!.companyName)
+            mInputCompanyAddress!!.setText(mAddress!!.addressOne)
+            mInputCity!!.setText(mAddress!!.city!!)
+            mCountry!!.text = mAddress!!.countryNameFormated
+            mZone!!.text = mAddress!!.zoneNameFormated
+            mInputPostCode!!.setText(mAddress!!.postcode)
+            mSelectedCountry = Country(Integer.valueOf(mAddress!!.countryId), mAddress!!.country!!, mAddress!!.isoCodeTwo!!)
+            mSelectedZone = Province(mAddress!!.zoneId!!, mAddress!!.countryId!!, mAddress!!.zoneName!!, mAddress!!.zoneCode!!)
         }
         setupCountryZoneListeners()
     }
@@ -111,7 +117,7 @@ open class EditAddressActivity : BaseActivity<EditAddressView, EditAddressPresen
         if (mIsNewAddress!!)
             getPresenter().saveAddress(addAddress)
         else
-            getPresenter().editAddress(Integer.valueOf(mAddress!!.getAddressId()), addAddress)
+            getPresenter().editAddress(Integer.valueOf(mAddress!!.addressId), addAddress)
     }
 
     override fun onCountriesFetched(countries: ArrayList<Country>) {

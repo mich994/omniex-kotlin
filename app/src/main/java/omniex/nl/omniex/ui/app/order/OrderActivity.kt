@@ -1,11 +1,11 @@
 package omniex.nl.omniex.ui.app.order
 
-import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.address.Address
 import omniex.nl.omniex.data.model.cart.Cart
 import omniex.nl.omniex.data.model.order.OrderOverview
 import omniex.nl.omniex.data.model.shipping.ShippingMethod
+import omniex.nl.omniex.ui.app.order.shipping.OrderShippingFragment_
 import omniex.nl.omniex.ui.base.BaseActivity
 import omniex.nl.omniex.ui.views.toolbar.CustomToolbar
 import org.androidannotations.annotations.AfterViews
@@ -14,7 +14,7 @@ import org.androidannotations.annotations.EActivity
 @EActivity(R.layout.activity_order)
 open class OrderActivity : BaseActivity<OrderView, OrderPresenter>(), OrderView {
 
-    val orderOverview = OrderOverview()
+    val orderOverview = OrderOverview("temp")
 
     override fun onFirstCreate() {
         super.onFirstCreate()

@@ -1,27 +1,24 @@
 package omniex.nl.omniex.ui.app.order.shipping.method
 
-import android.icu.lang.UScript.getCode
 import android.support.v7.widget.RecyclerView
 import android.widget.Button
 import android.widget.TextView
-import com.hannesdorfmann.mosby3.PresenterManager.getPresenter
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.shipping.ShippingMethod
 import omniex.nl.omniex.data.model.shipping.ShippingMethodSetter
 import omniex.nl.omniex.ui.adapters.ShippingMethodsAdapter
 import omniex.nl.omniex.ui.app.order.OrderActivity
+import omniex.nl.omniex.ui.app.order.payment.method.OrderPaymentMethodsFragment_
 import omniex.nl.omniex.ui.base.BaseFragment
 import omniex.nl.omniex.ui.base.BaseRecyclerAdapter
-
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment
 import org.androidannotations.annotations.ViewById
-
 import javax.inject.Inject
 
 @EFragment(R.layout.fragment_order_shipping)
-class OrderShippingMethodFragment : BaseFragment<OrderShippingMethodView, OrderShippingMethodPresenter>(), OrderShippingMethodView, BaseRecyclerAdapter.ItemClickListener<ShippingMethod> {
+open class OrderShippingMethodFragment : BaseFragment<OrderShippingMethodView, OrderShippingMethodPresenter>(), OrderShippingMethodView, BaseRecyclerAdapter.ItemClickListener<ShippingMethod> {
 
     @ViewById(R.id.order_shipping_rv)
     lateinit var mShippingAddressRv: RecyclerView
@@ -65,7 +62,7 @@ class OrderShippingMethodFragment : BaseFragment<OrderShippingMethodView, OrderS
         goToFragment(OrderPaymentMethodsFragment_.builder().build(), true)
     }
 
-    fun onItemClick(shippingMethod: ShippingMethod) {
+    override fun onItemClick(shippingMethod: ShippingMethod?) {
         mSelectedMethod = shippingMethod
         mShippingMethodsAdapter!!.setSelection(mShippingMethodsAdapter!!.items.indexOf(shippingMethod))
         mNextBtn!!.alpha = 1f
