@@ -27,11 +27,11 @@ open class MenuView(context: Context) : LinearLayout(context) {
         return this
     }
 
-//    fun setSelectedBg(isSelected: Boolean): MenuView {
-//        if (isSelected)
-//            mTitle!!.background = context.getDrawable(R.drawable.background_menu_item_light)
-//        else
-//            mTitle!!.background = context.getDrawable(R.drawable.background_menu_item_dark)
-//        return this
-//    }
+    fun setSelectedBg(isSelected: Boolean): MenuView {
+        if (isSelected)
+            mTitle!!.background = context.getDrawable(R.drawable.background_menu_item_light)
+        else
+            mTitle!!.background = context.getDrawable(R.drawable.background_menu_item_dark)
+        return this
+    }
 }

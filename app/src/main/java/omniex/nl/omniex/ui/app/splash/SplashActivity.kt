@@ -7,9 +7,13 @@ import omniex.nl.omniex.ui.base.BaseActivity
 import omniex.nl.omniex.utils.SharedPrefUtils
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.EActivity
+import javax.inject.Inject
 
 @EActivity(R.layout.activity_splash)
 open class SplashActivity : BaseActivity<SplashView, SplashPresenter>(), SplashView {
+
+    @Inject
+    lateinit var mSharedPrefUtils: SharedPrefUtils
 
     @AfterViews
     internal fun getAccessToken() {
@@ -18,7 +22,7 @@ open class SplashActivity : BaseActivity<SplashView, SplashPresenter>(), SplashV
 
     override fun onTokenFetched() {
         finish()
-        if (SharedPrefUtils.isUserLogged())
+        if (mSharedPrefUtils.isUserLogged())
             MainMenuActivity_.intent(this).start()
         else
             StartActivity_.intent(this).start()

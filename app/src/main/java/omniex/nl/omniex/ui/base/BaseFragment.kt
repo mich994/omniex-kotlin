@@ -62,7 +62,7 @@ abstract class BaseFragment<V : BaseView, P : BasePresenter<V>> : MvpFragment<V,
     }
 
     protected fun goToFragment(fragment: Fragment, addToBackStack: Boolean) {
-//        baseActivity!!.goToFragment(fragment, addToBackStack, "")
+        baseActivity!!.goToFragment(fragment, addToBackStack, "")
     }
 
     override fun onDetach() {

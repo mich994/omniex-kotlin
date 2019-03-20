@@ -12,7 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class MainMenuPresenter @Inject
-internal constructor(private val mProfileRepository: ProfileRepository, private val mCartRepository: CartRepository, private val mOrderRepository: OrderRepository) : BasePresenter<MainMenuView>() {
+internal constructor(private val mProfileRepository: ProfileRepository, private val mCartRepository: CartRepository, private val mOrderRepository: OrderRepository, private val mSharedPrefUtils:SharedPrefUtils) : BasePresenter<MainMenuView>() {
 
     fun logout() {
         addDisposable(mProfileRepository
@@ -20,7 +20,7 @@ internal constructor(private val mProfileRepository: ProfileRepository, private 
                 .subscribe(
                         { voidResponse ->
                             if (voidResponse.code() === 200) {
-                                SharedPrefUtils.setUserLogged(false)
+                                mSharedPrefUtils.setUserLogged(false)
                                 ifViewAttached { it.onLogoutSuccess() }
                             }
                         }, {

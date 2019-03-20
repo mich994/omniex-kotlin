@@ -9,9 +9,13 @@ import omniex.nl.omniex.ui.app.main.MainMenuActivity_
 import omniex.nl.omniex.utils.SharedPrefUtils
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
+import javax.inject.Inject
 
 @EActivity(R.layout.activity_start)
 open class StartActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var mSharedPrefUtils: SharedPrefUtils
 
     @Click(R.id.start_login_btn)
     internal fun onLoginClick() {
@@ -25,7 +29,7 @@ open class StartActivity : AppCompatActivity() {
 
     @Click(R.id.start_guest_btn)
     internal fun onStartGuestClick() {
-        SharedPrefUtils.setUserGuest(true)
+        mSharedPrefUtils.setUserGuest(true)
         MainMenuActivity_.intent(this).start()
     }
 }

@@ -8,23 +8,8 @@ import dagger.android.support.DaggerApplication
 open class Application : DaggerApplication() {
 
     val mInstance: Application
+    get() = this
 
-    init {
-        mInstance = this
-    }
-
-    companion object {
-        lateinit var application: Application
-
-        val instance: Application
-            get() {
-                if (application == null) {
-                    application = Application()
-                }
-
-                return application
-            }
-    }
 
     override fun onCreate() {
         super.onCreate()
@@ -42,8 +27,6 @@ open class Application : DaggerApplication() {
 
     val Context.application: Application
         get() = applicationContext as Application
-
-
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerApplicationComponent.builder()

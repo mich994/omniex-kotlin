@@ -2,6 +2,7 @@ package omniex.nl.omniex.di.modules
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import omniex.nl.omniex.ui.app.auth.StartActivity_
 import omniex.nl.omniex.ui.app.auth.login.LoginActivity_
 import omniex.nl.omniex.ui.app.auth.register.RegisterActivity_
 import omniex.nl.omniex.ui.app.main.MainMenuActivity_
@@ -29,4 +30,7 @@ abstract class ActivitiesModule {
 
     @ContributesAndroidInjector
     abstract fun contributeOrderActivity(): OrderActivity_
+
+    @ContributesAndroidInjector
+    abstract fun contributeStartActivity(): StartActivity_
 }

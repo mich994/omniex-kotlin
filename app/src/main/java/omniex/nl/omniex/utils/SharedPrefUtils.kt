@@ -2,7 +2,6 @@ package omniex.nl.omniex.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import omniex.nl.omniex.di.Application
 import javax.inject.Inject
 
 
@@ -28,7 +27,6 @@ internal constructor(private val mContext: Context) {
                 .apply()
     }
 
-    companion object {
 
         private val ACCESS_TOKEN_KEY = "ACCESS_TOKEN"
         private val OLD_TOKEN_KEY = "OLD_TOKEN"
@@ -37,7 +35,7 @@ internal constructor(private val mContext: Context) {
         private val NEWSLETTER_STATUS_KEY = "IS_SUBSCRIBED"
         private val TAX_KEY = "TAX"
 
-        var sharedPref: SharedPreferences = Application.instance.getSharedPreferences("omniex.nl.omniex", Context.MODE_PRIVATE)
+        var sharedPref: SharedPreferences = mContext.getSharedPreferences("omniex.nl.omniex", Context.MODE_PRIVATE)
 
         fun isUserLogged(): Boolean = sharedPref
                 .getBoolean(IS_USER_LOGGED_KEY, false)
@@ -74,5 +72,5 @@ internal constructor(private val mContext: Context) {
                 .edit()
                 .putInt(TAX_KEY, tax)
                 .apply()
-    }
+
 }

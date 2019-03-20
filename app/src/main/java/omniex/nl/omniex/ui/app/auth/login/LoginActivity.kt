@@ -5,12 +5,12 @@ import android.view.View
 import android.widget.EditText
 import omniex.nl.omniex.R
 import omniex.nl.omniex.data.model.auth.Login
+import omniex.nl.omniex.ui.app.main.MainMenuActivity_
 import omniex.nl.omniex.ui.base.BaseActivity
-import org.androidannotations.annotations.AfterViews
+import omniex.nl.omniex.ui.views.toolbar.CustomToolbar
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
 import org.androidannotations.annotations.ViewById
-
 
 
 @EActivity(R.layout.activity_login)
@@ -22,12 +22,6 @@ open class LoginActivity : BaseActivity<LoginView, LoginPresenter>(), LoginView 
     @ViewById(R.id.login_password_input)
     lateinit var mPasswordInput: EditText
 
-    @AfterViews
-    internal fun setTempCredentials() {
-        //        mEmailInput.setText("michlip994@gmail.com");
-        //        mPasswordInput.setText("micho994");
-    }
-
     @Click(R.id.login_login_btn, R.id.login_exit_btn)
     internal fun onClick(v: View) {
         when (v.id) {
@@ -38,18 +32,21 @@ open class LoginActivity : BaseActivity<LoginView, LoginPresenter>(), LoginView 
 
     override fun onFirstCreate() {
         super.onFirstCreate()
-//        setToolbar()
+        setToolbar()
     }
 
-//    private fun setToolbar() {
-//        getCustomToolbar()
-//                .setIconStart(R.drawable.twotone_arrow_back_black_36)
-//                .setIconStarClickListener(???({ this.finish() }))
-//    }
+    private fun setToolbar() {
+        customToolbar.setIconStart(R.drawable.twotone_arrow_back_black_36)
+                .setIconStarClickListener(object : CustomToolbar.IconStartClickListener {
+                    override fun onIconStartClick() {
+                        this@LoginActivity.finish()
+                    }
+                })
+    }
 
     override fun onLoginSuccess() {
-//        finish()
-//        MainMenuActivity_.intent(this).start()
+        finish()
+        MainMenuActivity_.intent(this).start()
     }
 
     override fun onLoginErrorMessage(message: String) {

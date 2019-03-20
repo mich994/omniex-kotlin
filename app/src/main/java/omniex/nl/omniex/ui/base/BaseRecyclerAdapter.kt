@@ -17,7 +17,7 @@ abstract class BaseRecyclerAdapter<T, V : View> : RecyclerView.Adapter<BaseRecyc
 
     fun setItems(list: List<T>){
         mItems.clear()
-        mItems.addAll(items)
+        mItems.addAll(list)
         notifyDataSetChanged()
     }
 

@@ -26,6 +26,7 @@ import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.EActivity
 import org.androidannotations.annotations.ViewById
 import java.util.*
+import javax.inject.Inject
 
 
 @EActivity(R.layout.activity_main_menu)
@@ -46,20 +47,22 @@ open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMe
 
     override fun startIndex(): Int = 0
 
+    @Inject
+    lateinit var mSharedPrefUtils: SharedPrefUtils
+
     @AfterViews
     internal fun initHomeFragment() {
         mDuo!!.setBackgroundResource(R.color.colorPrimaryDark)
-//        goToFragment(HomeFragment_.builder().build(), true, "")
+        goToFragment(HomeFragment_.builder().build(), true, "")
     }
 
     override fun onFirstCreate() {
         super.onFirstCreate()
-//        setToolbar()
+        setToolbar()
     }
 
     override fun onOptionClicked(position: Int, objectClicked: Any) {
         if (objectClicked != null) {
-            val menuItem = objectClicked as MenuItem?
             when (position) {
                 0 -> goToFragment(HomeFragment_.builder().build(), false, "")
                 1 -> goToFragment(ProductsListFragment_.builder().mIsBestSellersList(true).build(), false, "")
@@ -97,7 +100,7 @@ open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMe
     }
 //
     private fun handleLogoutClick() {
-        if (SharedPrefUtils.isUserLogged()) {
+        if (mSharedPrefUtils.isUserLogged()) {
             getPresenter().logout()
         } else {
             finish()
@@ -106,7 +109,7 @@ open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMe
     }
 
     private fun handleProfileClick() {
-        if (SharedPrefUtils.isUserLogged()) {
+        if (mSharedPrefUtils.isUserLogged()) {
             goToFragment(ProfileFragment_.builder().build(), false, "")
         } else {
             showGuestWarnDialog()
@@ -114,7 +117,7 @@ open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMe
     }
 
     private fun handleNewsletterClick() {
-        if (SharedPrefUtils.isUserLogged()) {
+        if (mSharedPrefUtils.isUserLogged()) {
             goToFragment(NewsletterFragment_.builder().build(), false, "")
         } else {
             showGuestWarnDialog()
@@ -150,7 +153,7 @@ open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMe
     }
 
     override fun onCartFetched(cart: Cart) {
-        if (SharedPrefUtils.isUserLogged()) {
+        if (mSharedPrefUtils.isUserLogged()) {
             if (!mIsCartOpen) {
                 mCartDialog = CartDialog_.builder().mCart(cart).build().setOnUpdateItemQuantityListener(this).setOnMakeOrderClickListener(this)
                 mCartDialog!!.show(getSupportFragmentManager(), "dialog")
@@ -184,7 +187,7 @@ open class MainMenuActivity : BaseMenuActivity<MenuAdapter, MainMenuView, MainMe
     }
 
     override fun onCartEmpty() {
-        if (SharedPrefUtils.isUserLogged()) {
+        if (mSharedPrefUtils.isUserLogged()) {
             if (mCartDialog != null && mCartDialog!!.isVisible())
                 mCartDialog!!.dismiss()
             val builder = AlertDialog.Builder(this).setMessage("Cart is empty.").setPositiveButton("OK") { dialog, which -> dialog.dismiss() }

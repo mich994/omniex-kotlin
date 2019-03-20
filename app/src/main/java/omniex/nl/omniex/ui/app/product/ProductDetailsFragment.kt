@@ -15,6 +15,7 @@ import omniex.nl.omniex.ui.base.BaseFragment
 import omniex.nl.omniex.utils.SharedPrefUtils
 import org.androidannotations.annotations.*
 import java.util.*
+import javax.inject.Inject
 
 
 @EFragment(R.layout.fragment_product_details)
@@ -41,6 +42,9 @@ open class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDeta
     @FragmentArg
     lateinit var mProductId: Integer
 
+    @Inject
+    lateinit var mSharedPrefUtils: SharedPrefUtils
+
     private var mDetailsImagePagerAdapter: DetailsImagePagerAdapter? = null
     private var mQuantity = 1
     private var mMainMenuActivity: MainMenuActivity? = null
@@ -49,7 +53,7 @@ open class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDeta
     @AfterViews
     internal fun initializeDetails() {
         mMainMenuActivity = getActivity() as MainMenuActivity
-        if (!SharedPrefUtils.isUserLogged())
+        if (!mSharedPrefUtils.isUserLogged())
             mAddToCartButton!!.alpha = .5f
         getPresenter().getProductDetails(mProductId.toInt())
     }
@@ -70,7 +74,7 @@ open class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDeta
     }
 
     private fun handleAddToCartClick() {
-        if (SharedPrefUtils.isUserLogged())
+        if (mSharedPrefUtils.isUserLogged())
             getPresenter().addToCart(AddToCartModel(mProductId.toString(), mQuantity.toString()))
         else {
             mMainMenuActivity!!.showGuestWarnDialog()

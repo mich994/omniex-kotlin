@@ -8,17 +8,17 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class LoginPresenter @Inject
-internal constructor(private val mProfileRepository: ProfileRepository) : BasePresenter<LoginView>() {
+internal constructor(private val mProfileRepository: ProfileRepository, private val mSharedPrefUtils: SharedPrefUtils) : BasePresenter<LoginView>() {
 
     internal fun login(login: Login) {
         addDisposable(mProfileRepository
                 .login(login)
                 .subscribe({ voidResponse ->
                     if (voidResponse.code() === 200) {
-                        SharedPrefUtils.setUserGuest(false)
-                        SharedPrefUtils.setUserLogged(true)
-                        SharedPrefUtils.setTax(Integer.valueOf(voidResponse.body()!!.profile!!.accountCustomField!!.taxNumber))
-                        SharedPrefUtils.setNewsletterStatus(voidResponse.body()!!.profile!!.newsletter.equals("1"))
+                        mSharedPrefUtils.setUserGuest(false)
+                        mSharedPrefUtils.setUserLogged(true)
+                        mSharedPrefUtils.setTax(Integer.valueOf(voidResponse.body()!!.profile!!.accountCustomField!!.taxNumber))
+                        mSharedPrefUtils.setNewsletterStatus(voidResponse.body()!!.profile!!.newsletter.equals("1"))
                         ifViewAttached{it.onLoginSuccess()}
                     } else if (voidResponse.code() === 403) {
                         ifViewAttached { view -> view.onLoginErrorMessage("Email and/or password are not correct.") }

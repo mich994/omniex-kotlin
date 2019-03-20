@@ -10,6 +10,7 @@ import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment
 import org.androidannotations.annotations.ViewById
+import javax.inject.Inject
 
 
 @EFragment(R.layout.fragment_newsletter)
@@ -24,11 +25,14 @@ open class NewsletterFragment : BaseFragment<NewsletterView, NewsletterPresenter
     @ViewById(R.id.newsletter_btn)
     lateinit var mSubscriptionButton: Button
 
+    @Inject
+    lateinit var mSharedPrefUtils: SharedPrefUtils
+
     private var mIsSubscribed: Boolean = false
 
     @AfterViews
     internal fun initStatus() {
-        mIsSubscribed = SharedPrefUtils.isNewsletterSubscribed()
+        mIsSubscribed = mSharedPrefUtils.isNewsletterSubscribed()
         if (mIsSubscribed) {
             mStatusImage!!.setImageResource(R.drawable.subscribed_status_icon)
             mStatusText!!.setText(getString(R.string.newsletter_subscribed_info))
@@ -49,7 +53,7 @@ open class NewsletterFragment : BaseFragment<NewsletterView, NewsletterPresenter
     }
 
     override fun OnSubscriptionChange(isSubscribed: Boolean) {
-        SharedPrefUtils.setNewsletterStatus(isSubscribed)
+        mSharedPrefUtils.setNewsletterStatus(isSubscribed)
         initStatus()
     }
 
